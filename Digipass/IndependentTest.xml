@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="IndependetTest">
+    <classes>    
+      <class name="Digi.RegisterNewOperator"/>
+      <class name="Digi.ManageOperators"/>
+      <class name="Digi.RegisterTrainer"/>    
+      <class name="Digi.DefineSkillsAndCurriculum"/>
+      <class name="Digi.OperatorTypes"/>   
+      <class name="Digi.SkillOperatorType"/>    
+      <class name="Digi.ScoreMetrics"/>     
+      <class name="Digi.OrganizationManagement"/>  
+      <class name="Digi.SetFinanceGroup"/>          
+      <class name="Digi.ManagementDetailedReport"/>
+      <class name="Digi.ManagementNonDetailedReports"/>
+      <class name="Digi.OperatorStationHistoryNonDetailedReport"/>
+      <class name="Digi.OperatorStationHistoryDetailedReport"/>
+      
+        	 
+   	  
+   	  
+    </classes>
+  </test> <!-- DependentOnCreateClass -->
+</suite> <!-- Suite -->
