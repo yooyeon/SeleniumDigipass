@@ -38,7 +38,7 @@ public class clockIn {
 		Thread.sleep(3000);
 		
 		// Connect to DB and find latest clock in entry's ID for selected operator
-		String operator="49102";
+		String operator="57957";
 		String UserName="sa";
 		String Password="ChangeIt17";
 		String serverName="10.172.86.53";
@@ -73,22 +73,42 @@ public class clockIn {
 		driver.findElement(By.xpath("//button[@title='Select Timeframe']")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//ul[@class='pay-periods-list large']/li[9]/span[text()='Today']")).click();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		
 		// get current time in AM/PM format
 		DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+		Date  time = new Date();
+		String time1 = dateFormat.format( time);
+		System.out.println("current time is: "+time1);
+		
+		DateFormat dateFormat2 = new SimpleDateFormat("MM/dd");
 		Date date = new Date();
-		String date1 = dateFormat.format(date);
-		System.out.println("current time is: "+date1);
+		String date1 = dateFormat2.format(date);
+		String strPattern = "^0+(?!$)";
+	    date1 = date1.replaceAll(strPattern, "");
+		System.out.println("today is: "+date1);
+		
+		
+		
 		
 		// In today's schedule , enter clock in time and current time and save. 
+		ele1 = driver.findElement(By.xpath("//span[contains(text(), ' "+date1+"')]"));
+		parent = ele1.findElement(By.xpath("./../../../../../.."));
+		child = parent.findElement(By.xpath("./div[1]/timecard-add-cell[1]/div[1]"));
+		String app=child.getAttribute("id");
+		char a1 = app.charAt(0);
+		//System.out.println(a1);
+						
 		Actions act = new Actions(driver);
-		WebElement  dc = driver.findElement(By.id("0_inpunch"));
+		WebElement  dc = driver.findElement(By.id(a1+"_inpunch"));
 		act.contextClick(dc).perform();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//button[@aria-label='Edit Punch']")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.id("punch-effective-time_inptext")).sendKeys(date1);
+		driver.findElement(By.id("punch-effective-time_inptext")).clear();
+		driver.findElement(By.id("punch-effective-time_inptext")).sendKeys(time1);
+		
+	
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//button[text()='Apply']")).click();
 		Thread.sleep(2000);
