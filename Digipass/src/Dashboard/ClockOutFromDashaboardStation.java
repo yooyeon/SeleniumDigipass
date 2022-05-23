@@ -88,11 +88,25 @@ public class ClockOutFromDashaboardStation {
 				DateFormat dateFormat2 = new SimpleDateFormat("hh:mm a");
 				Date date2 = new Date();
 				String time2 = dateFormat2.format(date2);
+				
+				DateFormat dateFormat3 = new SimpleDateFormat("MM/dd");
+				Date date = new Date();
+				String dat1 = dateFormat3.format(date);
+				String strPattern = "^0+(?!$)";
+			    dat1 = dat1.replaceAll(strPattern, "");
+				System.out.println("today is: "+dat1);
+			
 			
 				
 				// In today's schedule , enter clock out time and current time and save. 
+				ele1 = driver.findElement(By.xpath("//span[contains(text(), ' "+dat1+"')]"));
+				parent = ele1.findElement(By.xpath("./../../../../../.."));
+				child = parent.findElement(By.xpath("./div[1]/timecard-add-cell[1]/div[1]"));
+				String app=child.getAttribute("id");
+				char a1 = app.charAt(0);
+				
 				Actions act = new Actions(driver);
-				WebElement  dc = driver.findElement(By.id("0_outpunch"));
+				WebElement  dc = driver.findElement(By.id(a1+"_outpunch"));
 				act.contextClick(dc).perform();
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//button[@aria-label='Edit Punch']")).click();

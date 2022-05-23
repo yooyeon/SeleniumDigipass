@@ -114,10 +114,16 @@ public class DragAndDrop {
 		String sta2="ASSY SUP 2";
 		dragFromStationToEmptyStation(driver,operator2,sta2 );
 		
-		// then drag operator 1 from Assy sup1 station to Assy sup2 station which is occupied by operator 2
+		//Drag and drop operator 3 from unassigned panel to occupied station Assy sup2 
 		 rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where  station_name ='"+sta2+"'");			
 		 rs.next();
 		 String oco=rs.getNString("badge");
+		 dragFromUnassignedToOccupiedStation(driver,operator3,sta2, oco);
+		
+		// then drag operator 1 from Assy sup1 station to Assy sup2 station which is occupied by operator 3
+		 rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where  station_name ='"+sta2+"'");			
+		 rs.next();
+		 oco=rs.getNString("badge");
 		 dragFromStationToOccupiedStation(driver,operator1, sta2, oco);
 		 
 		
@@ -218,6 +224,35 @@ public class DragAndDrop {
 				Assert.assertTrue(t);					
 				System.out.println("dragged and dropped operator "+operator+" to "+dropDes+" station.");	
 	}
+	public static void dragFromUnassignedToOccupiedStation(WebDriver driver,String operator, String sta, String occupiedOperator) throws InterruptedException{
+		
+		
+		String dropDes=sta;
+		//System.out.println("Will drop operator to "+dropDes+" station.");
+		
+		WebElement ele1 = driver.findElement(By.xpath("//*[text()='"+dropDes+"']")); 
+		WebElement parent = ele1.findElement(By.xpath("./../.."));// find station tile
+		WebElement target = parent.findElement(By.xpath("./div[2]"));
+		
+        // Assign(drag and drop) operator to that station.
+		Actions a = new Actions(driver);
+		WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
+		a.dragAndDrop(source, target).build().perform();
+		Thread.sleep(10000);
+		
+		//Confirm operator dropped to proper station.
+		ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
+		parent = ele1.findElement(By.xpath("./.."));// find ele1 parent element
+		Boolean t=parent.findElement(By.xpath("./div[1]")).getText().contains(dropDes);// find ele1 parent element's third td child element.	
+		Assert.assertTrue(t);					
+		System.out.println("dragged and dropped operator "+operator+" from unassigned panel to an occupied station "+dropDes+".");	
+		
+		//Confirm previous occupied station moved to unassigned.
+		String c=driver.findElement(By.xpath("//div[@id='"+occupiedOperator+"']")).getAttribute("class");	
+		Assert.assertTrue(c.contains("unassignedPanelHeader"));
+		System.out.println("Previous occupied operator "+occupiedOperator+ " is moved to unassigned panel.");
+		
+}
 	public static void dragFromStationToEmptyStation(WebDriver driver,String operator, String sta) throws InterruptedException{
 		
 		
