@@ -17,17 +17,30 @@ import org.testng.Assert;
 public class test {
 
 	public static void main(String[] args) throws InterruptedException {
-		DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
-		Date time = new Date();
-		String time1 = dateFormat.format(time);
-		System.out.println("current time is: "+time1);
 		
-		DateFormat dateFormat2 = new SimpleDateFormat("MM/dd");
-		Date date = new Date();
-		String date1 = dateFormat2.format(date);
-		String strPattern = "^0+(?!$)";
-	    date1 = date1.replaceAll(strPattern, "");
-		System.out.println(date1);
+		System.setProperty("webdriver.chrome.driver", "C:\\yooyeon\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("http://setdev.ad.goodmanmfg.com/digipass/login.php");
+		driver.findElement(By.id("emailNew")).sendKeys("yuyan.cui@goodmanmfg.com");
+		driver.findElement(By.id("passwordNew")).sendKeys("111111");
+		driver.findElement(By.id("submitBtn")).click();
+		Thread.sleep(3000);
+		
+		// 4hours i set i<=80
+		for(int i=1;i<=2;i++) {		
+		driver.findElement(By.className("menu-open-button")).click();
+		Thread.sleep(20000);
+		driver.findElement(By.cssSelector("a.bgLightBlue.tooltip.menu-info")).click();
+		Thread.sleep(250000);
+		
+				
+		}
+		
+		System.out.println("Test Pass!");
+		
+	
+
 	}
 
 }

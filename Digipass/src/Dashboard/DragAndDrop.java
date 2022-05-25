@@ -215,7 +215,7 @@ public class DragAndDrop {
 				Actions a = new Actions(driver);
 				WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 				a.dragAndDrop(source, target).build().perform();
-				Thread.sleep(10000);
+				Thread.sleep(20000);
 				
 				//Confirm operator dropped to proper station.
 				ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
@@ -238,7 +238,7 @@ public class DragAndDrop {
 		Actions a = new Actions(driver);
 		WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 		a.dragAndDrop(source, target).build().perform();
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		
 		//Confirm operator dropped to proper station.
 		ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
@@ -267,7 +267,7 @@ public class DragAndDrop {
 		Actions a = new Actions(driver);
 		WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 		a.dragAndDrop(source, target).build().perform();
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		
 		//Confirm operator dropped to proper station.
 		ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
@@ -290,7 +290,7 @@ public class DragAndDrop {
 		Actions a = new Actions(driver);
 		WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 		a.dragAndDrop(source, target).build().perform();
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		
 		//Confirm operator dropped to proper station.
 		ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
@@ -315,7 +315,7 @@ public class DragAndDrop {
 		Actions a = new Actions(driver);
 		WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 		a.dragAndDrop(source, target).build().perform();
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		
 		
 		//Confirm previous occupied station moved to unassigned.
