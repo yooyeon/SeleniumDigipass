@@ -1,4 +1,4 @@
-package Dashboard;
+package Dash;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Iterator;
@@ -19,10 +19,12 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class DragAndDrop {
-
-	public static void main(String[] args) throws InterruptedException, SQLException {
+	
+	@Test
+	public void mainDragAndDrop( ) throws InterruptedException, SQLException {
 		// Login to home page , and expand menu icons
 		System.setProperty("webdriver.chrome.driver", "C:\\yooyeon\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
@@ -83,7 +85,7 @@ public class DragAndDrop {
 		driver.navigate().refresh();
 		System.out.println("Wait for 3min...");
 		//Thread.sleep(20000);	
-		Thread.sleep(180000);	
+		Thread.sleep(200000);	
 				
 		
 		// Connect to DB and confirm operators are inserted in dashboard_data or unassigned table
@@ -98,9 +100,9 @@ public class DragAndDrop {
 		ResultSet rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator1+"','"+operator2+"','"+operator3+"')");
 		
 		while(rs.next()) {
-			String badge=rs.getNString("badge");
+			String o=rs.getNString("badge");
 			// call method to move operator to unassigned
-			 dragFromStationToUnassigned(driver,badge);
+			 dragFromStationToUnassigned(driver,o);
 		} 
 		
 		// Now all the operators are in unassgined. 
@@ -133,7 +135,7 @@ public class DragAndDrop {
 		 dragFromStationToUnassigned(driver,operator1);
 		
 		System.out.println("Test pass!");		
-		//driver.quit();
+		driver.quit();
 		
 
 	}
@@ -322,7 +324,7 @@ public class DragAndDrop {
 		//Confirm previous occupied station moved to unassigned.
 		String c=driver.findElement(By.xpath("//div[@id='"+operator+"']")).getAttribute("class");	
 		Assert.assertTrue(c.contains("unassignedPanelHeader"));
-		System.out.println("operator "+operator+ " is moved  from station to  unassigned panel.");
+		System.out.println("operator "+operator+ " is moved from station to  unassigned panel.");
 				
 
 	}
