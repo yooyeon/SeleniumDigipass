@@ -130,8 +130,8 @@ public class ClockinAMSLineOperators {
 			String o=rs.getNString("badge");
 			// call method to move operator to unassigned
 			 dragFromStationToUnassigned(driver,o);
-		} 
-				
+		} 				
+		Thread.sleep(20000);	
 		
 		// Now all the operators are in unassgined. 
 		// Try to drag  one operator to a station.

@@ -69,12 +69,13 @@ public class ReleaseMTNLAssignToStation {
 		
 		ResultSet rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[dashboard_data ] where badge  is not null and department_id in  (select id from department where name ='"+dept+"') ");
 		rs.next(); 
-		String operator=rs.getString("badge");;
+		String operator=rs.getString("badge");
+		System.out.println("Operator is: "+operator+".");
 		
 		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
 		rs.next(); 
 		String id1= rs.getString("id");
-		System.out.println("latest record id is: "+id1);		
+		System.out.println("The latest record in operator_status id is: "+id1);		
 
 		
 	    //Find operator from dashboard, then right click , and release him
@@ -269,7 +270,7 @@ public class ReleaseMTNLAssignToStation {
 		Actions a = new Actions(driver);
 		WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 		a.dragAndDrop(source, target).build().perform();
-		Thread.sleep(10000);
+		Thread.sleep(30000);
 		
 		//Confirm operator dropped to proper station.
 		ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
@@ -281,7 +282,7 @@ public class ReleaseMTNLAssignToStation {
 		
 		
 		
-		/* Since we have bug will skip verifying below
+		
 		// Wait for 5min. then confirm in the db, clock in entry inserted with wc= 00001  and  isSentHome & isInReleasedPool = 0.
 		System.out.println("Wait for 5min...");
 		Thread.sleep(300000);
@@ -302,7 +303,7 @@ public class ReleaseMTNLAssignToStation {
 		Assert.assertEquals(h, "0");		
 		System.out.println("new clock in entry is inserted with wc 00001 and isSentHome & isInReleasedPool = 0.");
 		
-		*/
+	
 		
 		
 		System.out.println("Test pass!");		

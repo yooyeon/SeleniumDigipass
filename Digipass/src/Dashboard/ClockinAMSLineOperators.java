@@ -95,7 +95,7 @@ public class ClockinAMSLineOperators {
 						+ " ") ;
 				
 			
-			
+	
 		
 		// Call clock in method three times to clock in two operators.
 		String[] operator = new String[6];
@@ -110,6 +110,7 @@ public class ClockinAMSLineOperators {
 		clockIn(driver, operator[2]);
 		clockIn(driver, operator[3]);
 		clockIn(driver, operator[4]);
+		
 		//switch tab ,and Wait 3min to get clocked in entry .
 				Set<String> windows = driver.getWindowHandles();//[parentid, childid]
 				Iterator<String> it = windows.iterator();
@@ -120,7 +121,7 @@ public class ClockinAMSLineOperators {
 				System.out.println("Wait for 3min...");
 				//Thread.sleep(20000);	
 				Thread.sleep(200000);	
-				
+			
 		// move all operator to unassigned panel		
 		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator[0]+"','"+operator[1]+"','"+operator[2]+"','"+operator[3]+"','"+operator[3]+"') and department_id in  (select id from department where name ='"+dept+"') ");
 		
@@ -129,8 +130,8 @@ public class ClockinAMSLineOperators {
 			// call method to move operator to unassigned
 			 dragFromStationToUnassigned(driver,o);
 		} 
-				
-		
+			
+		Thread.sleep(20000);	
 		// Now all the operators are in unassgined. 
 		// Try to drag  one operator to a station.
 		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and can_work_stationIds !='' ");
