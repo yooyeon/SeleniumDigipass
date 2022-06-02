@@ -4,8 +4,9 @@
   <test thread-count="5" name="DashTest">
     <classes>    
      <!--   <class name="Dash.clockInToDashboardReservedStation"/> -->
-     <!--   <class name="Dash.clockInAssignToHistoricalStation"/> --> 
-     		<class name="Dash.mainReleaseMTNLAssignToStation"/>
+     <!--   <class name="Dash.clockInAssignToHistoricalStation"/> -->   	
+     		<class name="Dash.ClockinAMSLineOperators"/> 
+     		<class name="Dash.ReleaseMTNLAssignToStation"/>
      		<class name="Dash.ReleaseAndSentHome"/>          
      <!--   <class name="Dash.DragAndDrop"/>  -->
      <!-- <class name="Dash.checkDuplication"/> -->

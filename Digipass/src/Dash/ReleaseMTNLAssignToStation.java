@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 public class ReleaseMTNLAssignToStation {
 
 	@Test
-	public void mainReleaseMTNLAssignToStation( ) throws InterruptedException, SQLException {
+	public void mainReleaseMTNLAssignToStation() throws InterruptedException, SQLException {
 		//Before testing , open an AMS line dashboard (but non AAC05) , find an operator in dashboard station or unassigned panel.and specify dept & operator in the script.
 		
 		
@@ -43,8 +43,8 @@ public class ReleaseMTNLAssignToStation {
 		
 		
 		//Navigate to a AMS line dashboard.
-		String dept="AAH02";
-		String operator="52045";
+		String dept="AAC07";
+	
 		
 		driver.findElement(By.cssSelector("i.fas.fa-tachometer-alt")).click();
 		Thread.sleep(2000);
@@ -67,7 +67,11 @@ public class ReleaseMTNLAssignToStation {
 		Connection con= DriverManager.getConnection( DB_URL,UserName, Password);		
 		Statement s=con.createStatement();
 		
-		ResultSet rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
+		ResultSet rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[dashboard_data ] where badge  is not null and department_id in  (select id from department where name ='"+dept+"') ");
+		rs.next(); 
+		String operator=rs.getString("badge");;
+		
+		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
 		rs.next(); 
 		String id1= rs.getString("id");
 		System.out.println("latest record id is: "+id1);		

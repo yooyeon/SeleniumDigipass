@@ -42,8 +42,8 @@ public class ReleaseAndSentHome {
 		Thread.sleep(1000);
 
 		// Navigate to a AMS line dashboard.
-		String dept = "AAH02";
-		String operator = "59771";
+		String dept = "AAC07";
+
 
 		driver.findElement(By.cssSelector("i.fas.fa-tachometer-alt")).click();
 		Thread.sleep(2000);
@@ -65,8 +65,11 @@ public class ReleaseAndSentHome {
 				+ ";encrypt=true;trustServerCertificate=true";
 		Connection con = DriverManager.getConnection(DB_URL, UserName, Password);
 		Statement s = con.createStatement();
+		ResultSet rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') ");
+		rs.next(); 
+		String operator=rs.getString("badge");;
 
-		ResultSet rs = s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="
+		rs = s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="
 				+ operator + " order by queued_time desc");
 		rs.next();
 		String id1 = rs.getString("id");
