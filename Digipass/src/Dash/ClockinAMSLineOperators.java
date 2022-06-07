@@ -81,7 +81,7 @@ public class ClockinAMSLineOperators {
 						
 				ResultSet rs= s.executeQuery("with t as (\r\n"
 						+ "SELECT row_number() over(\r\n"
-						+ "partition by badge order by queued_time \r\n"
+						+ "partition by badge order by queued_time desc \r\n"
 						+ "	) as row_num, *\r\n"
 						+ "FROM [passport_demo].[dbo].[operator_status] ) \r\n"
 						+ "						\r\n"
@@ -92,9 +92,8 @@ public class ClockinAMSLineOperators {
 						+ "  FROM [passport_sandbox].[dbo].[operator_schedules] WHERE scheduled_day='"+date3+"'\r\n"
 						+ "  and department_id in (select id from department where name ='"+dept+"')\r\n"
 						+ " and  badge not in (select badge from unassigned_operators)\r\n"
-						+ " and badge not in (select badge  from dashboard_data where badge is not null) \r\n"
-						+ ")\r\n"
-						+ " ") ;
+						+ " and badge not in (select badge  from dashboard_data where badge is not null) ) order by queued_time asc ") ;
+					
 				
 			
 			

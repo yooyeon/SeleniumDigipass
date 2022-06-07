@@ -102,7 +102,7 @@ public class clockInAssignToHistoricalStation {
 				+ " and  badge not in (select badge from unassigned_operators)\r\n"
 				+ " and badge not in (select badge  from dashboard_data where badge is not null) \r\n"
 				+ " and badge not in (select  o.badge_num from  operator as o \r\n"
-				+ "join operator_station_reservation as osr on o.id=osr.operator_id) ") ;
+				+ "join operator_station_reservation as osr on o.id=osr.operator_id)  order by queued_time asc ") ;
 		
 	
 		rs.next(); 

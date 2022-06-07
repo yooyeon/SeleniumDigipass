@@ -201,7 +201,7 @@ public class ReleaseAndSentHome {
 		// right after send to home, confirm operator disappeared from resource pool page.
 		i = driver.findElements(By.xpath("//*[contains(text(),'" + operator + "')]")).size();
 		Assert.assertTrue(i == 0);
-		System.out.println("Operator got removed from resource pool page.");
+		System.out.println("After sent operator to home, Operator is removed from resource pool page.");
 		
 		//In unassigned_operators table, operator got removed from unassigned table..
 		rs = s.executeQuery("Select * from unassigned_operators where badge=" + operator);
