@@ -65,7 +65,7 @@ public class ReleaseAndSentHome {
 				+ ";encrypt=true;trustServerCertificate=true";
 		Connection con = DriverManager.getConnection(DB_URL, UserName, Password);
 		Statement s = con.createStatement();
-		ResultSet rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') ");
+		ResultSet rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and status not in ('RTP','RTPPEND') ");
 		rs.next(); 
 		String operator=rs.getString("badge");;
 
@@ -162,7 +162,7 @@ public class ReleaseAndSentHome {
 
 		driver.switchTo().window(childId);
 		driver.navigate().refresh();
-		Thread.sleep(7000);
+		Thread.sleep(10000);
 		Assert.assertTrue(driver.findElement(By.xpath("//*[text()='"+operator+"']/../../div[1]")).getAttribute("style").contains("green")) ;
 		System.out.println("Operator department is in green bar");
 		
@@ -182,13 +182,13 @@ public class ReleaseAndSentHome {
 		Thread.sleep(1200000);
 		
 		driver.navigate().refresh();
-		Thread.sleep(7000);
+		Thread.sleep(10000);
 		Assert.assertTrue(driver.findElement(By.xpath("//*[text()='"+operator+"']/../../div[1]")).getAttribute("style").contains("red")) ;
 		System.out.println("Operator department is in red bar");
 		
 		// Send operator to home.
 		driver.navigate().refresh();
-		Thread.sleep(7000);
+		Thread.sleep(10000);
 		ele1 = driver.findElement(By.xpath("//*[text()='" + operator + "']"));
 		parent = ele1.findElement(By.xpath("./.."));
 		parent.click();
