@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-06-07T15:57:19 CDT" name="Default suite" finished-at="2022-06-07T16:22:46 CDT" duration-ms="1527002">
+  <suite started-at="2022-06-08T17:40:02 CDT" name="Default suite" finished-at="2022-06-08T17:46:18 CDT" duration-ms="376333">
     <groups>
     </groups>
-    <test started-at="2022-06-07T15:57:19 CDT" name="Default test" finished-at="2022-06-07T16:22:46 CDT" duration-ms="1527002">
-      <class name="Dash.ReleaseAndSentHome">
-        <test-method signature="mainReleaseAndSentHome()[pri:0, instance:Dash.ReleaseAndSentHome@d29f28]" started-at="2022-06-07T15:57:19 CDT" name="mainReleaseAndSentHome" finished-at="2022-06-07T16:22:46 CDT" duration-ms="1526968" status="PASS">
+    <test started-at="2022-06-08T17:40:02 CDT" name="Default test" finished-at="2022-06-08T17:46:18 CDT" duration-ms="376333">
+      <class name="Dash.clockInAssignToHistoricalStation">
+        <test-method signature="mainClockInAssignToHistoricalStation()[pri:0, instance:Dash.clockInAssignToHistoricalStation@d29f28]" started-at="2022-06-08T17:40:02 CDT" name="mainClockInAssignToHistoricalStation" finished-at="2022-06-08T17:46:18 CDT" duration-ms="376290" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- mainReleaseAndSentHome -->
-      </class> <!-- Dash.ReleaseAndSentHome -->
+        </test-method> <!-- mainClockInAssignToHistoricalStation -->
+      </class> <!-- Dash.clockInAssignToHistoricalStation -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
