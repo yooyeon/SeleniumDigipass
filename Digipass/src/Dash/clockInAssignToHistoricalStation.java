@@ -72,35 +72,38 @@ public class clockInAssignToHistoricalStation {
 		
 		//Connect to DB and find an operator who doesn't exists in dashboard or unassigned table
 		// and this operator no reserved station in any dept
-		// and operator has schedule for today and operator has work history  in his scheduled dept	
+		// and operator has schedule for today and operator last station id in snapshot table  in his scheduled dept	
 		// and scheduled dept is non AMS line. 
-		// and in operator_station_history table department_number is not null
-		// and  current time is in his scheduled time and previous worked station shift is same as his scheduled shift
-		// and operator scheduled department id is same as previous worked station department id.	
+		// and in snapshot table department_number is not null
+		// and  current time is in his scheduled time 
+		// and operator scheduled department id is same as snapshot department id.	
 		// and operator department current is running a shift , and this shift number is matching with operator scheduled shift number.
 		// and operator only has one entry for today in schedules table. (I found it will fail when operator got two entries in schedule table for today as 2nd shift--i think it's SET code issue , but since it's an existing  issue will exclude this case)
-		// and his previous worked station is not occupied now. then find latest clock entry's ID for filtered operator.
+		// and his last_station_id from snapshot table is not occupied now.
+		// and last_station_id in snapshot table is same as station_id in operator_station_history table latest entry.  then find latest clock entry's ID for filtered operator.
 		
 		ResultSet rs= s.executeQuery(" with t as (\r\n"
 				+ "SELECT row_number() over(\r\n"
 				+ "partition by badge order by queued_time desc\r\n"
 				+ ") as row_num, *\r\n"
 				+ "FROM [passport_demo].[dbo].[operator_status] ) \r\n"
-				+ "		\r\n"
 				+ " select top(15) * from t where t.row_num=1   and \r\n"
 				+ "badge  in \r\n"
-				+ "(  select badge_num from operator where id in (SELECT operator_id\r\n"
-				+ "FROM [passport_sandbox].[dbo].[operator_station_history] where\r\n"
-				+ " station_id in (select id from station where department_id not in (select id from department where name ='AAC05') and is_active=1 and id in (select station_id from dashboard_data where  badge is null ))))\r\n"
-				+ " and badge in (  select  osh.badge from operator_station_history as osh \r\n"
-				+ "join operator_schedules as os on osh.badge=os.badge\r\n"
+				+ "(select badge from operator_snapshot where last_station_id in  (select id from station where department_id not in (select id from department where name ='AAC05') and is_active=1 and id in (select station_id from dashboard_data where  badge is null )))\r\n"
+				+ "\r\n"
+				+ "and badge in (  select  osp.badge from operator_snapshot as osp \r\n"
+				+ "join operator_schedules as os on osp.badge=os.badge\r\n"
 				+ "join dashboard_shiftsdefinition_v as sd on os.department_id=sd.department_id \r\n"
-				+ "join station as st on osh.station_id = st.id\r\n"
-				+ "where sd.is_ams_line=0  and osh.shift= os.shift_number and os.shift_number=sd.shiftNumber and sd.shiftactive='Y'  and  os.scheduled_day='"+date1+"' and os. schedule_start <='"+time1+"' and os.schedule_end >= '"+time1+"'\r\n"
-				+ " and sd.dateEffective<='"+date1+"' and cast(sd.shiftStart as time) <='"+time3+"'  and cast(sd.shiftEnd as time) >='"+time3+"'\r\n"
-				+ " and os.department_id = st.department_id and osh.department_id=os.department_id \r\n"
-				+ " and osh.department_number is not null  )\r\n "
-				+ " and  badge in (SELECT badge FROM [passport_sandbox].[dbo].[operator_schedules] where  scheduled_day='"+date1+"' group by badge having COUNT(badge)=1) \r\n"
+				+ "join station as st on osp.last_station_id = st.id\r\n"
+				+ "join operator_station_history  as osh  on osh.badge= osp.badge\r\n"
+				+ "where sd.is_ams_line=0 and osh.shift= os.shift_number  and os.shift_number=sd.shiftNumber and sd.shiftactive='Y'  and  os.scheduled_day='"+date1+"' and os. schedule_start <='"+time1+"' and os.schedule_end >= '"+time1+"'\r\n"
+				+ "and sd.dateEffective<='"+date1+"' and cast(sd.shiftStart as time) <='"+time3+"'  and cast(sd.shiftEnd as time) >='"+time3+"'\r\n"
+				+ " and os.department_id = st.department_id and osp.last_department_id=os.department_id\r\n"
+				+ " and osp.last_department_number in (SELECT financegroup\r\n"
+				+ "  FROM [passport_sandbox].[dbo].[department_financegroup] where department_id=os.department_id ) \r\n"
+				+ "  and osp.last_station_id in (  select top(1) station_id from operator_station_history where badge= osp.badge and department_number is not null order by user_modified_date desc) )\r\n"
+				+ "\r\n"
+				+ "and  badge in (SELECT badge FROM [passport_sandbox].[dbo].[operator_schedules] where  scheduled_day='"+date1+"' group by badge having COUNT(badge)=1) \r\n"
 				+ " and  badge not in (select badge from unassigned_operators)\r\n"
 				+ " and badge not in (select badge  from dashboard_data where badge is not null) \r\n"
 				+ " and badge not in (select  o.badge_num from  operator as o \r\n"
