@@ -7,8 +7,7 @@
         <class name="Dash.clockInToDashboardReservedStation"/> 
         <class name="Dash.clockInAssignToHistoricalStation"/>  	
       	<class name="Dash.ClockinAMSLineOperators"/> 
-     	<class name="Dash.ReleaseMTNLAssignToStation"/>
-     	      
+     	<class name="Dash.ReleaseMTNLAssignToStation"/>    	      
       	<class name="Dash.DragAndDrop"/>  
      	<class name="Dash.checkDuplication"/>
       	<class name="Dash.ClockOutFromDashaboardStation"/>
