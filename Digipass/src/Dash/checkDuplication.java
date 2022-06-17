@@ -1,5 +1,7 @@
 package Dash;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -39,6 +41,9 @@ public class checkDuplication {
 				driver.findElement(By.className("menu-open-button")).click();
 				Thread.sleep(1000);
 				
+				DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+				LocalDateTime now = LocalDateTime.now();  
 				//Navigate to a line dashboard.
 				String dept="SE Support Team";
 				driver.findElement(By.cssSelector("i.fas.fa-tachometer-alt")).click();
@@ -81,18 +86,21 @@ public class checkDuplication {
 					// call method to move operator to unassigned
 					DuplicationChek(driver, badge);
 				} 
-				
-				System.out.println("Test Done.");
+				now = LocalDateTime.now(); 
+				System.out.println("@"+dt.format(now)+" "+"Test Done.");
 				driver.quit();
 
 	}
 
 	 
 	public static void DuplicationChek(WebDriver driver,String operator) throws InterruptedException {
+		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+		LocalDateTime now = LocalDateTime.now();  
 		
 		int k= driver.findElements(By.xpath("//*[text()='"+operator+"']")).size();
 		if(k>1) {
-			System.out.println("Found duplication for operator: "+operator);
+			System.out.println("@"+dt.format(now)+" "+"Found duplication for operator: "+operator);
 		} 
 
 		Thread.sleep(2000);	

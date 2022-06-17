@@ -1,6 +1,8 @@
 package Dash;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Set;
 import java.net.SocketException;
@@ -40,7 +42,11 @@ public class ReleaseAndSentHome {
 		Thread.sleep(3000);
 		driver.findElement(By.className("menu-open-button")).click();
 		Thread.sleep(1000);
+		
+		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 
+		LocalDateTime now = LocalDateTime.now();  
+		
 		// Navigate to a AMS line dashboard.
 		String dept = "AAC07";
 
@@ -73,7 +79,8 @@ public class ReleaseAndSentHome {
 				+ operator + " order by queued_time desc");
 		rs.next();
 		String id1 = rs.getString("id");
-		System.out.println("latest record id is: " + id1);
+		now = LocalDateTime.now(); 
+		System.out.println("@"+dt.format(now)+" "+"latest record id is: " + id1);
 		
 		
 		// Find operator from dashboard, then right click , and release him
@@ -90,17 +97,20 @@ public class ReleaseAndSentHome {
 		String status = driver.findElement(By.xpath("//div[@id='" + operator + "']")).getAttribute("alt");
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='" + operator + "']")).getAttribute("class")
 				.contains("unassignedPanelHeader"));
-		System.out.println("status is " + status);
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"status is " + status);
 
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@style,'" + operator + ".jpg')]/div[1]/i[1]"))
 				.getAttribute("class").contains("SIcon SETicon-sendToPool SETiconsRedContrasted"));
-		System.out.println("operator displayed in unassigned panel with RTPPEND Red icon.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator displayed in unassigned panel with RTPPEND Red icon.");
 
 		rs = s.executeQuery("Select * from unassigned_operators where badge=" + operator);
 		rs.next();
 		String st = rs.getString("status");
 		Assert.assertEquals(st, "RTPPEND");
-		System.out.println("operator status is RTPPEND in unassigned operator table.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator status is RTPPEND in unassigned operator table.");
 
 		// open resource pool page in new tab. and confirm displayed released operator.
 		driver.switchTo().newWindow(WindowType.TAB);
@@ -123,12 +133,19 @@ public class ReleaseAndSentHome {
 		Assert.assertTrue(
 				driver.findElement(By.xpath("//div[contains(@style,'" + operator + ".jpg')]/div[4]/div[1]/div[1]/*[1]"))
 						.getAttribute("class").contains("MuiCircularProgress-svg"));
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator appeared in resource pool page with yellow loading icon.");
+		
 
-		System.out.println("operator appeared in resource pool page with yellow loading icon.");
-		System.out.println("Wait for 3min...");
+		// check db every 20 sec, wait until new clock entry created  with wc= 00004 and isReleasedPool is 1.
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"Wait for clock entry, will check every 20 sec...");
+		while(!checkNewEntryCreated(rs,s, id1, operator))
+		{
 
-		// Wait for 3min. then confirm in the db, clock in entry inserted with wc= 00004 and isReleasedPool is 1.
-		Thread.sleep(180000);
+             Thread.sleep(20000);
+           
+		}
 		rs = s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge =" + operator
 				+ " order by queued_time desc");
 		rs.next();
@@ -142,20 +159,23 @@ public class ReleaseAndSentHome {
 
 		String f = rs.getString("isInReleasedPool");
 		Assert.assertEquals(f, "1");
-		System.out.println("new clock in entry is inserted with wc 00004 and isInReleasedPool is 1.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"new clock in entry is inserted with wc 00004 and isInReleasedPool is 1.");
 
 		// In unassigned_operators table, operator status updated to RTP
 		rs = s.executeQuery("Select * from unassigned_operators where badge=" + operator);
 		rs.next();
 		st = rs.getString("status");
 		Assert.assertEquals(st, "RTP");
-		System.out.println("operator status is RTP in unassigned operator table.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator status is RTP in unassigned operator table.");
 
 		// In dashboard operator changed to RTP status with yellow icon.
 		driver.switchTo().window(parentId);
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@style,'" + operator + ".jpg')]/div[1]/i[1]"))
 				.getAttribute("class").contains("SIcon SETicon-sendToPool SETiconsYellowContrasted"));
-		System.out.println("operator displayed in unassigned panel with RTP yellow icon.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator displayed in unassigned panel with RTP yellow icon.");
 		Thread.sleep(2000);
 		
 		// Switch to resource pool page and confirm operator showing with green bar.
@@ -164,7 +184,8 @@ public class ReleaseAndSentHome {
 		driver.navigate().refresh();
 		Thread.sleep(20000);
 		Assert.assertTrue(driver.findElement(By.xpath("//*[text()='"+operator+"']/../../div[1]")).getAttribute("style").contains("green")) ;
-		System.out.println("Operator department is in green bar");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"Operator department is in green bar");
 		
 		// And in pull operator popup window , send to home button is unavailable.
 		WebElement ele1 = driver.findElement(By.xpath("//*[text()='" + operator + "']"));
@@ -174,17 +195,20 @@ public class ReleaseAndSentHome {
 		Thread.sleep(2000);
 		i=driver.findElements(By.cssSelector("svg.svg-inline--fa.fa-house-user.fa-w-18 ")).size();
 		Assert.assertEquals(i, 0);
-		System.out.println("In pull operator popup window, send to home button is unavailable");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"In pull operator popup window, send to home button is unavailable");
 		driver.navigate().refresh();
 
 		//wait for 20min so operator showing with red bar
-		System.out.println("Send to home button is unavailable , need to Wait for 20min...");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"Send to home button is unavailable , need to Wait for 20min...");
 		Thread.sleep(1200000);
 		
 		driver.navigate().refresh();
 		Thread.sleep(20000);
 		Assert.assertTrue(driver.findElement(By.xpath("//*[text()='"+operator+"']/../../div[1]")).getAttribute("style").contains("red")) ;
-		System.out.println("Operator department is in red bar");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"Operator department is in red bar");
 		
 		// Send operator to home.
 		driver.navigate().refresh();
@@ -201,12 +225,14 @@ public class ReleaseAndSentHome {
 		// right after send to home, confirm operator disappeared from resource pool page.
 		i = driver.findElements(By.xpath("//*[contains(text(),'" + operator + "')]")).size();
 		Assert.assertTrue(i == 0);
-		System.out.println("After sent operator to home, Operator is removed from resource pool page.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"After sent operator to home, Operator is removed from resource pool page.");
 		
 		//In unassigned_operators table, operator got removed from unassigned table..
 		rs = s.executeQuery("Select * from unassigned_operators where badge=" + operator);
 		Assert.assertFalse(rs.next()) ;
-		System.out.println("operator got removed from unassigned operator table.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator got removed from unassigned operator table.");
 		
 		// In dashboard can't find operator.
 		driver.switchTo().window(parentId);
@@ -214,7 +240,8 @@ public class ReleaseAndSentHome {
 		Thread.sleep(10000);
 		i = driver.findElements(By.xpath("//*[contains(text(),'" + operator + "')]")).size();
 		Assert.assertEquals(i, 0);
-		System.out.println("operator is removed from dashboad unassigned panel");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator is removed from dashboad unassigned panel");
 
 		// In db. previous rtp inserted entry , isInReleasedPool set to 0 and isSentHome column updated to 1.
 		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
@@ -225,10 +252,22 @@ public class ReleaseAndSentHome {
 		Assert.assertEquals(f, "0");
 		String h=rs.getString("isSentHome");
 		Assert.assertEquals(h, "1");
-		System.out.println("previous RPT inserted clock in entry isInReleasedPool set to 0 and isSentHome column updated to 1. ");
-		
-		System.out.println("Test pass!");		
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"previous RPT inserted clock in entry isInReleasedPool set to 0 and isSentHome column updated to 1. ");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"Test pass!");		
 		driver.quit();
 	}
+	public static boolean checkNewEntryCreated(ResultSet rs,Statement s, String id1, String operator) throws InterruptedException, SQLException{
+		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
+		rs.next(); 
+		String id2= rs.getString("id");
+		if(Integer.parseInt(id2)>Integer.parseInt(id1)) {
+			return true;
+		} else {
+			return false;
+		}
+				
+}
 
 }

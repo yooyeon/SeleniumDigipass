@@ -175,7 +175,7 @@ public class clockInToDashboardReservedStation {
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("i.icon-k-save.button-highlight.hidden-xs")).click();
 		
-		//Wait 3min, then confirm in the db, it created new clock in entry.
+		//check in db every 20sec, wait until clock entry created...
 		now = LocalDateTime.now();  
 		System.out.println("@"+dt.format(now)+" "+"Wait for clock entry, will check every 20 sec...");
 		

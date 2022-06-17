@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.openqa.selenium.By;
@@ -38,6 +40,9 @@ public class ClockOutFromDashaboardStation {
 				driver.findElement(By.id("loginButton_0")).click();
 				Thread.sleep(3000);
 				
+				DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+				LocalDateTime now = LocalDateTime.now();  
 				
 				// Connect to DB 
 				//String operator="49102";
@@ -55,12 +60,14 @@ public class ClockOutFromDashaboardStation {
 				String operator= rs.getString("badge");
 				String station= rs.getString("station_name");
 				String dept= rs.getString("department_name");
-				System.out.println("Operator:"+operator+" is in department: "+dept+" and station: "+station);
+				now = LocalDateTime.now();
+				System.out.println("@"+dt.format(now)+" "+"Operator:"+operator+" is in department: "+dept+" and station: "+station);
 				
 				rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
 				rs.next(); 
 				String id1= rs.getString("id");
-				System.out.println("In operator_status table latest record id is: "+id1);		
+				now = LocalDateTime.now();  
+				System.out.println("@"+dt.format(now)+" "+"In operator_status table latest record id is: "+id1);		
 				
 				
 				//click on search and search with a operator badge number, then select operator and click "Go To" button to open timecard page.
@@ -119,9 +126,16 @@ public class ClockOutFromDashaboardStation {
 				Thread.sleep(2000);
 				driver.findElement(By.cssSelector("i.icon-k-save.button-highlight.hidden-xs")).click();
 				
-				//Wait 3min, then confirm in the db, it created new clock in entry.
-				System.out.println("Wait for 3min...");
-				Thread.sleep(240000);	
+				//check in db every 20sec, wait until clock entry created...
+				now = LocalDateTime.now();  
+				System.out.println("@"+dt.format(now)+" "+"Wait for clock entry, will check every 20 sec...");
+				
+				while(!checkNewEntryCreated(rs,s, id1, operator))
+				{
+
+		             Thread.sleep(20000);
+		           
+				}
 				rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
 				rs.next(); 
 				String id2= rs.getString("id");
@@ -132,24 +146,40 @@ public class ClockOutFromDashaboardStation {
 				Assert.assertEquals(v, "1");
 				String badge=rs.getString("badge");
 				Assert.assertEquals(badge, operator);
-				System.out.println("It created new clock out entry and id is "+id2);	
+				now = LocalDateTime.now();  
+				System.out.println("@"+dt.format(now)+" "+"It created new clock out entry and id is "+id2);	
 				
 				
 				
 				//Wait 1min, then confirm in the db, operator got removed from dashboard_data table.
-				System.out.println("Wait for 1min...");
-				Thread.sleep(60000);	
+				now = LocalDateTime.now();  
+				System.out.println("@"+dt.format(now)+" "+"Wait for 20 sec...");
+				Thread.sleep(20000);	
 				rs= s.executeQuery(" SELECT * FROM [passport_sandbox].[dbo].[dashboard_data] where badge ="+operator+"");
 				Assert.assertFalse(rs.next()) ; 
-				System.out.println("Operator: "+operator+" is removed from department: "+dept+" station: "+station);		
+				now = LocalDateTime.now();  
+				System.out.println("@"+dt.format(now)+" "+"Operator: "+operator+" is removed from department: "+dept+" station: "+station);		
 				
 			    
 				
-				
-				System.out.println("Test pass!");		
+				now = LocalDateTime.now(); 
+				System.out.println("@"+dt.format(now)+" "+"Test pass!");		
 				driver.quit();
 				
 				
 	}
+	
+	public static boolean checkNewEntryCreated(ResultSet rs,Statement s, String id1, String operator) throws InterruptedException, SQLException{
+		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
+		rs.next(); 
+		String id2= rs.getString("id");
+		if(Integer.parseInt(id2)>Integer.parseInt(id1)) {
+			return true;
+		} else {
+			return false;
+		}
+				
+}
+
 
 }

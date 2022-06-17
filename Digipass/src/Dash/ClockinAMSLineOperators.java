@@ -1,5 +1,7 @@
 package Dash;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -37,6 +39,11 @@ public class ClockinAMSLineOperators {
 		Thread.sleep(3000);
 		driver.findElement(By.className("menu-open-button")).click();
 		Thread.sleep(1000);
+		
+		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+		LocalDateTime now = LocalDateTime.now();  
+		
 		
 		//Navigate to a line dashboard.
 		String dept="AAC07";
@@ -120,10 +127,17 @@ public class ClockinAMSLineOperators {
 				driver.navigate().refresh();
 				System.out.println("Wait for 3min...");
 				//Thread.sleep(20000);	
-				Thread.sleep(200000);	
+				Thread.sleep(180000);	
 				
 		// click on unassigned panel icon on top in case no unassigned panel displayed in the dashboard.
-				driver.findElement(By.cssSelector("i.SETicon-unassign.SIcon ")).click();				
+
+				try {
+					driver.findElement(By.cssSelector("i.SETicon-unassign.SIcon ")).click();	
+					}
+					catch(Exception e) {
+					  now = LocalDateTime.now(); 
+					  System.out.println("@"+dt.format(now)+" "+"Clicked unassigned icon on top.");
+					}			
 				Thread.sleep(3000);
 				
 		// move all operator to unassigned panel		
@@ -151,8 +165,8 @@ public class ClockinAMSLineOperators {
 		dragFromUnassignedToStation(driver,op, sta1);
 		
 		
-		
-		System.out.println("Test pass!");		
+		now = LocalDateTime.now(); 
+		System.out.println("@"+dt.format(now)+" "+"Test pass!");		
 		driver.quit();
 		
 
