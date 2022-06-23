@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>DashTest</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>9/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>8/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Jun 10 12:51:37 CDT 2022</td>
+<td>Started on:</td><td>Wed Jun 22 15:23:49 CDT 2022</td>
 </tr>
-<tr><td>Total time:</td><td>4535 seconds (4535808 ms)</td>
+<tr><td>Total time:</td><td>3334 seconds (3334982 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,65 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='Dash.clockInAssignToHistoricalStation.mainClockInAssignToHistoricalStation()'><b>mainClockInAssignToHistoricalStation</b><br>Test class: Dash.clockInAssignToHistoricalStation</td>
+<td><div><pre>com.microsoft.sqlserver.jdbc.SQLServerException: The result set has no current row.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:237)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.verifyResultSetHasCurrentRow(SQLServerResultSet.java:567)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getterGetColumn(SQLServerResultSet.java:2050)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getValue(SQLServerResultSet.java:2081)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getValue(SQLServerResultSet.java:2067)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getString(SQLServerResultSet.java:2552)
+	at Dash.clockInAssignToHistoricalStation.mainClockInAssignToHistoricalStation(clockInAssignToHistoricalStation.java:217)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 27 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1134976216", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1134976216'><pre>com.microsoft.sqlserver.jdbc.SQLServerException: The result set has no current row.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:237)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.verifyResultSetHasCurrentRow(SQLServerResultSet.java:567)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getterGetColumn(SQLServerResultSet.java:2050)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getValue(SQLServerResultSet.java:2081)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getValue(SQLServerResultSet.java:2067)
+	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getString(SQLServerResultSet.java:2552)
+	at Dash.clockInAssignToHistoricalStation.mainClockInAssignToHistoricalStation(clockInAssignToHistoricalStation.java:217)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>145</td>
+<td>Dash.clockInAssignToHistoricalStation@bd4dc25</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -75,50 +134,45 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Dash.checkDuplication.mainCheckDuplication()'><b>mainCheckDuplication</b><br>Test class: Dash.checkDuplication</td>
-<td></td>
-<td>36</td>
-<td>Dash.checkDuplication@25084a1e</td></tr>
-<tr>
 <td title='Dash.ReleaseAndSentHome.mainReleaseAndSentHome()'><b>mainReleaseAndSentHome</b><br>Test class: Dash.ReleaseAndSentHome</td>
 <td></td>
-<td>1554</td>
-<td>Dash.ReleaseAndSentHome@383bfa16</td></tr>
-<tr>
-<td title='Dash.clockInToDashboardReservedStation.mainClockInToDashboardReservedStation()'><b>mainClockInToDashboardReservedStation</b><br>Test class: Dash.clockInToDashboardReservedStation</td>
-<td></td>
-<td>336</td>
-<td>Dash.clockInToDashboardReservedStation@7a419da4</td></tr>
-<tr>
-<td title='Dash.ClockOutFromUnassignedPanel.mainClockOutFromUnassignedPanel()'><b>mainClockOutFromUnassignedPanel</b><br>Test class: Dash.ClockOutFromUnassignedPanel</td>
-<td></td>
-<td>332</td>
-<td>Dash.ClockOutFromUnassignedPanel@71def8f8</td></tr>
-<tr>
-<td title='Dash.ReleaseMTNLAssignToStation.mainReleaseMTNLAssignToStation()'><b>mainReleaseMTNLAssignToStation</b><br>Test class: Dash.ReleaseMTNLAssignToStation</td>
-<td></td>
-<td>743</td>
-<td>Dash.ReleaseMTNLAssignToStation@4efc180e</td></tr>
-<tr>
-<td title='Dash.DragAndDrop.mainDragAndDrop()'><b>mainDragAndDrop</b><br>Test class: Dash.DragAndDrop</td>
-<td></td>
-<td>474</td>
-<td>Dash.DragAndDrop@bd4dc25</td></tr>
+<td>1413</td>
+<td>Dash.ReleaseAndSentHome@5562c41e</td></tr>
 <tr>
 <td title='Dash.ClockinAMSLineOperators.mainClockinAMSLineOperators()'><b>mainClockinAMSLineOperators</b><br>Test class: Dash.ClockinAMSLineOperators</td>
 <td></td>
-<td>379</td>
-<td>Dash.ClockinAMSLineOperators@5fbdfdcf</td></tr>
+<td>465</td>
+<td>Dash.ClockinAMSLineOperators@25084a1e</td></tr>
 <tr>
-<td title='Dash.clockInAssignToHistoricalStation.mainClockInAssignToHistoricalStation()'><b>mainClockInAssignToHistoricalStation</b><br>Test class: Dash.clockInAssignToHistoricalStation</td>
+<td title='Dash.DragAndDrop.mainDragAndDrop()'><b>mainDragAndDrop</b><br>Test class: Dash.DragAndDrop</td>
 <td></td>
-<td>346</td>
-<td>Dash.clockInAssignToHistoricalStation@505fc5a4</td></tr>
+<td>572</td>
+<td>Dash.DragAndDrop@3bf9ce3e</td></tr>
+<tr>
+<td title='Dash.checkDuplication.mainCheckDuplication()'><b>mainCheckDuplication</b><br>Test class: Dash.checkDuplication</td>
+<td></td>
+<td>38</td>
+<td>Dash.checkDuplication@16610890</td></tr>
+<tr>
+<td title='Dash.ReleaseMTNLAssignToStation.mainReleaseMTNLAssignToStation()'><b>mainReleaseMTNLAssignToStation</b><br>Test class: Dash.ReleaseMTNLAssignToStation</td>
+<td></td>
+<td>282</td>
+<td>Dash.ReleaseMTNLAssignToStation@156b88f5</td></tr>
+<tr>
+<td title='Dash.ClockOutFromUnassignedPanel.mainClockOutFromUnassignedPanel()'><b>mainClockOutFromUnassignedPanel</b><br>Test class: Dash.ClockOutFromUnassignedPanel</td>
+<td></td>
+<td>113</td>
+<td>Dash.ClockOutFromUnassignedPanel@53fdffa1</td></tr>
 <tr>
 <td title='Dash.ClockOutFromDashaboardStation.mainClockOutFromDashaboardStation()'><b>mainClockOutFromDashaboardStation</b><br>Test class: Dash.ClockOutFromDashaboardStation</td>
 <td></td>
-<td>332</td>
-<td>Dash.ClockOutFromDashaboardStation@156b88f5</td></tr>
+<td>134</td>
+<td>Dash.ClockOutFromDashaboardStation@71def8f8</td></tr>
+<tr>
+<td title='Dash.clockInToDashboardReservedStation.mainClockInToDashboardReservedStation()'><b>mainClockInToDashboardReservedStation</b><br>Test class: Dash.clockInToDashboardReservedStation</td>
+<td></td>
+<td>167</td>
+<td>Dash.clockInToDashboardReservedStation@759d26fb</td></tr>
 </table><p>
 </body>
 </html>
