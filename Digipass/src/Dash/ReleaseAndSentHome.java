@@ -58,7 +58,7 @@ public class ReleaseAndSentHome {
 		driver.findElement(By.xpath("//h4[contains(text(),'Assembly')]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//h4[contains(text(),'" + dept + "')]")).click();
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		int i = driver.findElements(By.xpath("//div[@id='departmentDash']")).size();
 		Assert.assertTrue(i > 0);
 

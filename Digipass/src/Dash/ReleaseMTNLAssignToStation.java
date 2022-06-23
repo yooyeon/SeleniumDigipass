@@ -26,14 +26,12 @@ public class ReleaseMTNLAssignToStation {
 
 	@Test
 	public void mainReleaseMTNLAssignToStation() throws InterruptedException, SQLException {
-		//Before testing , open an AMS line dashboard (but non AAC05) , find an operator in dashboard station or unassigned panel.and specify dept & operator in the script.
-		
+		//Before testing , open an AMS line dashboard (but non AAC05) , find an operator in dashboard station or unassigned panel.and specify dept & operator in the script.		
 		
 		// Login to home page , and expand menu icons
 		System.setProperty("webdriver.chrome.driver", "C:\\yooyeon\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));		
-		
 		driver.get("http://setdev.ad.goodmanmfg.com/digipass/login.php");
 		driver.manage().window().maximize();
 		driver.findElement(By.id("emailNew")).sendKeys("yuyan.cui@goodmanmfg.com");
@@ -59,7 +57,7 @@ public class ReleaseMTNLAssignToStation {
 		driver.findElement(By.xpath("//h4[contains(text(),'Assembly')]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//h4[contains(text(),'"+dept+"')]")).click();
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		int i=driver.findElements(By.xpath("//div[@id='departmentDash']")).size();
 		Assert.assertTrue(i>0);
 		
@@ -215,10 +213,8 @@ public class ReleaseMTNLAssignToStation {
 		//System.out.println("@"+dt.format(now)+" "+"operator status is MTNLPEND in unassigned operator table.");
 		
 		// In db. previous rtp inserted entry , isInReleasedPool set to 0.
-		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
+		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where id="+id2+" order by queued_time desc");
 		rs.next(); 
-		String id3= rs.getString("id");
-		Assert.assertTrue(id3.equals(id2));
 		f=rs.getString("isInReleasedPool");
 		Assert.assertEquals(f, "0");
 		now = LocalDateTime.now(); 
@@ -256,7 +252,7 @@ public class ReleaseMTNLAssignToStation {
 		}
 		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
 		rs.next(); 
-		id3= rs.getString("id");
+		String id3= rs.getString("id");
 		Assert.assertTrue(Integer.parseInt(id3)>Integer.parseInt(id2));
 		wc=rs.getString("org_path");
 		Assert.assertTrue( wc.contains("00004"));
