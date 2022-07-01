@@ -217,7 +217,7 @@ public class ReleaseAndSentHome {
 		parent = ele1.findElement(By.xpath("./.."));
 		parent.click();
 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
         driver.findElement(By.cssSelector("svg.svg-inline--fa.fa-house-user.fa-w-18 ")).click();
 		Thread.sleep(7000);
 		driver.navigate().refresh();

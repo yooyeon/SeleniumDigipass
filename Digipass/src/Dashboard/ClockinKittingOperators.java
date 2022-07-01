@@ -1,4 +1,4 @@
-package Dash;
+package Dashboard;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,12 +21,10 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
-public class ClockinAMSLineOperators {
-	
-	@Test
-	public void mainClockinAMSLineOperators() throws InterruptedException, SQLException {
+public class ClockinKittingOperators {
+
+	public static void main(String[] args) throws InterruptedException, SQLException {
 		// Login to home page , and expand menu icons
 		System.setProperty("webdriver.chrome.driver", "C:\\yooyeon\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
@@ -39,19 +37,19 @@ public class ClockinAMSLineOperators {
 		Thread.sleep(3000);
 		driver.findElement(By.className("menu-open-button")).click();
 		Thread.sleep(1000);
-		
 		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 
-		LocalDateTime now = LocalDateTime.now();  
-		
+		LocalDateTime now = LocalDateTime.now(); 
 		
 		//Navigate to a line dashboard.
-		String dept="AAC07";
+		String dept="Kitting";
 		driver.findElement(By.cssSelector("i.fas.fa-tachometer-alt")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//h4[contains(text(),'Manufacturing')]")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//h4[contains(text(),'Assembly')]")).click();
+		driver.findElement(By.xpath("//h4[contains(text(),'Materials')]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//h4[contains(text(),'Materials Kitting')]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//h4[contains(text(),'"+dept+"')]")).click();
 		Thread.sleep(5000);
@@ -99,11 +97,11 @@ public class ClockinAMSLineOperators {
 						+ "  FROM [passport_sandbox].[dbo].[operator_schedules] WHERE scheduled_day='"+date3+"'\r\n"
 						+ "  and department_id in (select id from department where name ='"+dept+"')\r\n"
 						+ " and  badge not in (select badge from unassigned_operators)\r\n"
-						+ " and badge not in (select badge  from dashboard_data where badge is not null) ) order by queued_time asc ") ;
+						+ " and badge not in (select badge  from dashboard_data where badge is not null)  ) order by queued_time asc ") ;
 					
 				
 			
-			
+	
 		
 		// Call clock in method three times to clock in two operators.
 		String[] operator = new String[6];
@@ -118,6 +116,7 @@ public class ClockinAMSLineOperators {
 		clockIn(driver, operator[2]);
 		clockIn(driver, operator[3]);
 		clockIn(driver, operator[4]);
+		
 		//switch tab ,and Wait 3min to get clocked in entry .
 				Set<String> windows = driver.getWindowHandles();//[parentid, childid]
 				Iterator<String> it = windows.iterator();
@@ -125,21 +124,21 @@ public class ClockinAMSLineOperators {
 				String childId = it.next();
 				driver.switchTo().window(parentId);
 				driver.navigate().refresh();
-				System.out.println("Wait for 2min...");
+				System.out.println("Wait for 3min...");
 				//Thread.sleep(20000);	
-				Thread.sleep(120000);	
-				
+				Thread.sleep(200000);	
+		
 		// click on unassigned panel icon on top in case no unassigned panel displayed in the dashboard.
-
 				try {
 					driver.findElement(By.cssSelector("i.SETicon-unassign.SIcon ")).click();	
 					}
 					catch(Exception e) {
 					  now = LocalDateTime.now(); 
 					  System.out.println("@"+dt.format(now)+" "+"Clicked unassigned icon on top.");
-					}			
+					}					
 				Thread.sleep(3000);
 				
+			
 		// move all operator to unassigned panel		
 		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator[0]+"','"+operator[1]+"','"+operator[2]+"','"+operator[3]+"','"+operator[4]+"') and department_id in  (select id from department where name ='"+dept+"') ");
 		
@@ -147,26 +146,26 @@ public class ClockinAMSLineOperators {
 			String o=rs.getNString("badge");
 			// call method to move operator to unassigned
 			 dragFromStationToUnassigned(driver,o);
-		} 				
+		} 
+			
 		Thread.sleep(20000);	
-		
 		// Now all the operators are in unassgined. 
 		// Try to drag  one operator to a station.
-		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and can_work_stationIds !='' ");
-		rs.next();
-		String op=rs.getNString("badge");
-		String sta=rs.getNString("can_work_stationIds");
-		String[] station = sta.split("\\|");// split by '|' and after split it will return array.
-		String des = station[0].trim();// will remove space
-		rs= s.executeQuery("select * from station where id ='"+des+"'");
-		rs.next();
-		String sta1=rs.getNString("name");
+		//rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and can_work_stationIds !='' ");
+		//rs.next();
+		//String op=rs.getNString("badge");
+		//String sta=rs.getNString("can_work_stationIds");
+		//String[] station = sta.split("\\|");// split by '|' and after split it will return array.
+		//String des = station[0].trim();// will remove space
+		//rs= s.executeQuery("select * from station where id ='"+des+"'");
+		//rs.next();
+		//String sta1=rs.getNString("name");
 
-		dragFromUnassignedToStation(driver,op, sta1);
+		//dragFromUnassignedToStation(driver,op, sta1);
 		
 		
 		now = LocalDateTime.now(); 
-		System.out.println("@"+dt.format(now)+" "+"Test pass!");		
+		System.out.println("@"+dt.format(now)+" "+"Test pass!");				
 		driver.quit();
 		
 
