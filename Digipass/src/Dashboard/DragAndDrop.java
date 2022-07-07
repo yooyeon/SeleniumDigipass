@@ -73,9 +73,9 @@ public class DragAndDrop {
 				//String operator4="57901";
 				//String operator5="64134";
 				
-				//clockIn(driver, operator1);
-				//clockIn(driver, operator2);
-				//clockIn(driver, operator3);
+				clockIn(driver, operator1);
+				clockIn(driver, operator2);
+				clockIn(driver, operator3);
 				//clockIn(driver, operator4);
 				//clockIn(driver, operator5);
 

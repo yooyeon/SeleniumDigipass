@@ -84,7 +84,8 @@ public class ClockOutFromDashaboardStation {
 				Thread.sleep(1000);
 				driver.findElement(By.id("goToDropdownButton")).click();
 				Thread.sleep(2000);
-				driver.findElement(By.xpath("//button[@title='Timecard']")).click();
+				//driver.findElement(By.xpath("//button[@title='Timecard']")).click();
+				driver.findElement(By.xpath("//ul[@class='go-to-items-list']/li[1]/button")).click();
 				Thread.sleep(3000);
 				
 				//select today in timecard page
