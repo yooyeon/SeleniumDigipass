@@ -66,7 +66,6 @@ public class DragAndDrop {
 		Thread.sleep(5000);
 		int i=driver.findElements(By.xpath("//div[@id='departmentDash']")).size();
 		Assert.assertTrue(i>0);
-		Thread.sleep(30000);
 		
 		String operator1="49654";
 		String operator2="57957";

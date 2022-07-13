@@ -152,7 +152,7 @@ public class ClockinAMSLineOperators {
 		
 		// Now all the operators are in unassgined. 
 		// Try to drag  one operator to a station.
-		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and can_work_stationIds !='' ");
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and can_work_stationIds !=''and status not in ('RTP','RTPPEND') ");
 		rs.next();
 		String op=rs.getNString("badge");
 		String sta=rs.getNString("can_work_stationIds");
@@ -238,7 +238,9 @@ public class ClockinAMSLineOperators {
 	}
 	
 	public static void dragFromUnassignedToStation(WebDriver driver,String operator, String sta) throws InterruptedException{
-		
+		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+		LocalDateTime now = LocalDateTime.now();  
 		
 				String dropDes=sta;
 				//System.out.println("Will drop operator to "+dropDes+" station.");
@@ -258,7 +260,7 @@ public class ClockinAMSLineOperators {
 				parent = ele1.findElement(By.xpath("./.."));// find ele1 parent element
 				Boolean t=parent.findElement(By.xpath("./div[1]")).getText().contains(dropDes);// find ele1 parent element's third td child element.	
 				Assert.assertTrue(t);					
-				System.out.println("dragged and dropped operator "+operator+" to "+dropDes+" station.");	
+				System.out.println("@"+dt.format(now)+" "+"dragged and dropped operator "+operator+" to "+dropDes+" station.");	
 	}
 	public static void dragFromUnassignedToOccupiedStation(WebDriver driver,String operator, String sta, String occupiedOperator) throws InterruptedException{
 		
