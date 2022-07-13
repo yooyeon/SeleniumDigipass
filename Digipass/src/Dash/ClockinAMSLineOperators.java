@@ -251,7 +251,7 @@ public class ClockinAMSLineOperators {
 				Actions a = new Actions(driver);
 				WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 				a.dragAndDrop(source, target).build().perform();
-				Thread.sleep(20000);
+				Thread.sleep(30000);
 				
 				//Confirm operator dropped to proper station.
 				ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 

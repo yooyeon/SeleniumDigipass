@@ -54,7 +54,7 @@ public class ClockOutFromUnassignedPanel {
 				Connection con= DriverManager.getConnection( DB_URL,UserName, Password);		
 				Statement s=con.createStatement();
 				
-				ResultSet rs= s.executeQuery("select top(2) * from unassigned_operators order by modified_date desc");
+				ResultSet rs= s.executeQuery("select top(2) * from unassigned_operators where  badge not in ('49654','57957','59836') order by modified_date desc");
 				
 				rs.next(); 
 				String operator= rs.getString("badge");

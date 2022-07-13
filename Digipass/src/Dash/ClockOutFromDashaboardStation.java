@@ -54,7 +54,7 @@ public class ClockOutFromDashaboardStation {
 				Connection con= DriverManager.getConnection( DB_URL,UserName, Password);		
 				Statement s=con.createStatement();
 				
-				ResultSet rs= s.executeQuery("select top(2) * from dashboard_data where badge is not null order by user_modified_date asc");
+				ResultSet rs= s.executeQuery("select top(2) * from dashboard_data where badge is not null and badge not in ('49654','57957','59836') order by user_modified_date asc");
 				
 				rs.next(); 
 				String operator= rs.getString("badge");

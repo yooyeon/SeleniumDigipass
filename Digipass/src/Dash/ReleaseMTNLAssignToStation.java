@@ -128,9 +128,9 @@ public class ReleaseMTNLAssignToStation {
 		int si= driver.findElements(By.xpath("//*[contains(text(),'"+operator+"')]")).size();
 		Assert.assertEquals(si, 1);
 		
-		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]/div[4]/div[1]/div[1]/*[1]")).getAttribute("class").contains("MuiCircularProgress-svg"));		
+		//Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]/div[4]/div[1]/div[1]/*[1]")).getAttribute("class").contains("MuiCircularProgress-svg"));		
 		now = LocalDateTime.now(); 
-		System.out.println("@"+dt.format(now)+" "+"operator appeared in resource pool page with yellow loading icon.");
+		System.out.println("@"+dt.format(now)+" "+"operator appeared in resource pool page.");
 		
 		
 	   // check db every 20 sec, wait until new clock entry created with wc= 00004  and isReleasedPool is 1.
@@ -166,6 +166,7 @@ public class ReleaseMTNLAssignToStation {
 		System.out.println("@"+dt.format(now)+" "+"operator status is RTP in unassigned operator table.");		
 		
 		// In dashboard operator changed to RTP status with yellow icon.
+		Thread.sleep(5000);
 		driver.switchTo().window(parentId);
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]/div[1]/i[1]")).getAttribute("class").contains("SIcon SETicon-sendToPool SETiconsYellowContrasted"));
 		now = LocalDateTime.now(); 
@@ -244,12 +245,16 @@ public class ReleaseMTNLAssignToStation {
 		now = LocalDateTime.now();  
 		System.out.println("@"+dt.format(now)+" "+"Wait for clock entry, will check every 20 sec...");
 		
-		while(!checkNewEntryCreated(rs,s, id2, operator))
+		int tr=0;
+		while(!checkNewEntryCreated(rs,s, id2, operator) && tr!=9)
 		{
-
+			
              Thread.sleep(20000);
+             tr++;
            
 		}
+		
+
 		rs= s.executeQuery("SELECT TOP (1) * FROM [passport_sandbox].[dbo].[operator_status] where badge ="+operator+" order by queued_time desc");
 		rs.next(); 
 		String id3= rs.getString("id");
@@ -319,7 +324,7 @@ public class ReleaseMTNLAssignToStation {
 		now = LocalDateTime.now();  
 		System.out.println("@"+dt.format(now)+" "+"Wait for clock entry, will check every 20 sec...");
 		now = LocalDateTime.now();  
-		int tr=0;
+		tr=0;
 		while(!checkNewEntryCreated(rs,s, id3, operator) && tr!=9)
 		{
 			

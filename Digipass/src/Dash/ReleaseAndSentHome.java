@@ -118,6 +118,7 @@ public class ReleaseAndSentHome {
 		driver.manage().window().maximize();
 		driver.findElement(By.xpath("//input[@name='email']")).sendKeys("yuyan.cui@goodmanmfg.com");
 		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("111111");
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//button[contains(text(),'Login')]")).click();
 		Thread.sleep(15000);
 
@@ -130,11 +131,11 @@ public class ReleaseAndSentHome {
 		int si = driver.findElements(By.xpath("//*[contains(text(),'" + operator + "')]")).size();
 		Assert.assertEquals(si, 1);
 
-		Assert.assertTrue(
-				driver.findElement(By.xpath("//div[contains(@style,'" + operator + ".jpg')]/div[4]/div[1]/div[1]/*[1]"))
-						.getAttribute("class").contains("MuiCircularProgress-svg"));
+		//Assert.assertTrue(
+		//		driver.findElement(By.xpath("//div[contains(@style,'" + operator + ".jpg')]/div[4]/div[1]/div[1]/*[1]"))
+		//				.getAttribute("class").contains("MuiCircularProgress-svg"));
 		now = LocalDateTime.now();  
-		System.out.println("@"+dt.format(now)+" "+"operator appeared in resource pool page with yellow loading icon.");
+		System.out.println("@"+dt.format(now)+" "+"operator appeared in resource pool page .");
 		
 
 		// check db every 20 sec, wait until new clock entry created  with wc= 00004 and isReleasedPool is 1.
