@@ -172,6 +172,7 @@ public class ReleaseAndSentHome {
 		System.out.println("@"+dt.format(now)+" "+"operator status is RTP in unassigned operator table.");
 
 		// In dashboard operator changed to RTP status with yellow icon.
+		Thread.sleep(5000);
 		driver.switchTo().window(parentId);
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@style,'" + operator + ".jpg')]/div[1]/i[1]"))
 				.getAttribute("class").contains("SIcon SETicon-sendToPool SETiconsYellowContrasted"));

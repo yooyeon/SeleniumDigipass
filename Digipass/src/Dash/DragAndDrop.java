@@ -44,6 +44,16 @@ public class DragAndDrop {
 
 		LocalDateTime now = LocalDateTime.now();  
 		
+		// Connect to DB and confirm operators are inserted in dashboard_data or unassigned table
+				String UserName="sa";
+				String Password="ChangeIt17";
+				String serverName="10.172.86.53";
+				String dbName="passport_sandbox";
+				String  DB_URL = "jdbc:sqlserver://" +serverName + ":1433;DatabaseName=" + dbName + ";encrypt=true;trustServerCertificate=true";
+				Connection con= DriverManager.getConnection( DB_URL,UserName, Password);		
+				Statement s=con.createStatement();
+				
+		
 		//Navigate to a line dashboard.
 		String dept="SE Support Team";
 		driver.findElement(By.cssSelector("i.fas.fa-tachometer-alt")).click();
@@ -56,7 +66,15 @@ public class DragAndDrop {
 		Thread.sleep(5000);
 		int i=driver.findElements(By.xpath("//div[@id='departmentDash']")).size();
 		Assert.assertTrue(i>0);
+		Thread.sleep(30000);
 		
+		String operator1="49654";
+		String operator2="57957";
+		String operator3="59836";		
+		//String operator4="57901";
+		//String operator5="64134";
+		
+
 		// open WFD page in new tab 
 		driver.switchTo().newWindow(WindowType.TAB);
 		driver.get("https://goodmanglobalhold-uat.npr.mykronos.com/timekeeping#/timecard");
@@ -68,19 +86,33 @@ public class DragAndDrop {
 		driver.findElement(By.id("loginButton_0")).click();
 		Thread.sleep(3000);
 		
-		// Call clock in method three times to clock in two operators.
-		String operator1="49654";
-		String operator2="57957";
-		String operator3="59836";		
-		//String operator4="57901";
-		//String operator5="64134";
+		// Call clock in method three times to clock in three operators.		
+		ResultSet rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge="+operator1);
+		Boolean d=rs.next();
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where badge="+operator1);
+		Boolean u=rs.next();
+		if(!(d || u)) {
+			clockIn(driver, operator1);
+		} 	
 		
-		clockIn(driver, operator1);
-		clockIn(driver, operator2);
-		clockIn(driver, operator3);
-		//clockIn(driver, operator4);
-		//clockIn(driver, operator5);
-
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge="+operator2);
+		 d=rs.next();
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where badge="+operator2);
+		 u=rs.next();
+		
+		if(!(d || u)) {
+			clockIn(driver, operator2);
+		} 
+		
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge="+operator3);
+		d=rs.next();
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where badge="+operator3);
+		u=rs.next();
+		
+		if(!(d || u)) {
+			clockIn(driver, operator3);
+		} 
+		
 		
 		//switch tab ,and Wait 3min to get clocked in entry .
 		Set<String> windows = driver.getWindowHandles();//[parentid, childid]
@@ -89,20 +121,12 @@ public class DragAndDrop {
 		String childId = it.next();
 		driver.switchTo().window(parentId);
 		driver.navigate().refresh();
-		now = LocalDateTime.now();  
+		now = LocalDateTime.now();		
+
 		System.out.println("@"+dt.format(now)+" "+"Wait for 3min...");
-		//Thread.sleep(20000);	
 		Thread.sleep(180000);	
-				
-		// Connect to DB and confirm operators are inserted in dashboard_data or unassigned table
-		String UserName="sa";
-		String Password="ChangeIt17";
-		String serverName="10.172.86.53";
-		String dbName="passport_sandbox";
-		String  DB_URL = "jdbc:sqlserver://" +serverName + ":1433;DatabaseName=" + dbName + ";encrypt=true;trustServerCertificate=true";
-		Connection con= DriverManager.getConnection( DB_URL,UserName, Password);		
-		Statement s=con.createStatement();
-		
+
+						
 		driver.navigate().refresh();
 		Thread.sleep(20000);
 		
@@ -116,7 +140,7 @@ public class DragAndDrop {
 			}			
 		Thread.sleep(3000);		
 		
-		ResultSet rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator1+"','"+operator2+"','"+operator3+"')");
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator1+"','"+operator2+"','"+operator3+"')");
 		
 		while(rs.next()) {
 			String o=rs.getNString("badge");
