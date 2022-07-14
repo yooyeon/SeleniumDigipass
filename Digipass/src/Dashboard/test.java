@@ -47,7 +47,7 @@ public class test {
 				
 				
 				//Navigate to a line dashboard.
-				String dept="AAC07";
+				String dept="ACL01";
 				driver.findElement(By.cssSelector("i.fas.fa-tachometer-alt")).click();
 				Thread.sleep(2000);
 				driver.findElement(By.xpath("//h4[contains(text(),'Manufacturing')]")).click();
@@ -114,11 +114,11 @@ public class test {
 					
 				}
 				
-				//clockIn(driver, operator[0]);
-				//clockIn(driver, operator[1]);
-				//clockIn(driver, operator[2]);
-				//clockIn(driver, operator[3]);
-				//clockIn(driver, operator[4]);
+				clockIn(driver, operator[0]);
+				clockIn(driver, operator[1]);
+				clockIn(driver, operator[2]);
+				clockIn(driver, operator[3]);
+				clockIn(driver, operator[4]);
 				//switch tab ,and Wait 3min to get clocked in entry .
 						Set<String> windows = driver.getWindowHandles();//[parentid, childid]
 						Iterator<String> it = windows.iterator();
@@ -126,9 +126,9 @@ public class test {
 						String childId = it.next();
 						driver.switchTo().window(parentId);
 						driver.navigate().refresh();
-						//System.out.println("Wait for 2min...");
+						System.out.println("Wait for 2min...");
 						//Thread.sleep(20000);	
-						//Thread.sleep(120000);	
+						Thread.sleep(120000);	
 						
 				// click on unassigned panel icon on top in case no unassigned panel displayed in the dashboard.
 
@@ -142,18 +142,18 @@ public class test {
 						Thread.sleep(3000);
 						
 				// move all operator to unassigned panel		
-				//rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator[0]+"','"+operator[1]+"','"+operator[2]+"','"+operator[3]+"','"+operator[4]+"') and department_id in  (select id from department where name ='"+dept+"') ");
+				rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator[0]+"','"+operator[1]+"','"+operator[2]+"','"+operator[3]+"','"+operator[4]+"') and department_id in  (select id from department where name ='"+dept+"') ");
 				
-				//while(rs.next()) {
-					//String o=rs.getNString("badge");
-					// call method to move operator to unassigned
-					// dragFromStationToUnassigned(driver,o);
-				//} 				
-				//Thread.sleep(20000);	
+				while(rs.next()) {
+					String o=rs.getNString("badge");
+					// call method to move operator to unassignedf
+					 dragFromStationToUnassigned(driver,o);
+				} 				
+				Thread.sleep(20000);	
 				
 				// Now all the operators are in unassgined. 
 				// Try to drag  one operator to a station.
-				rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and can_work_stationIds !='' ");
+				rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[unassigned_operators] where department_id in  (select id from department where name ='"+dept+"') and can_work_stationIds !=''and status not in ('RTP','RTPPEND') ");
 				rs.next();
 				String op=rs.getNString("badge");
 				String sta=rs.getNString("can_work_stationIds");
@@ -162,8 +162,6 @@ public class test {
 				rs= s.executeQuery("select * from station where id ='"+des+"'");
 				rs.next();
 				String sta1=rs.getNString("name");
-				
-				System.out.println(op);
 
 				dragFromUnassignedToStation(driver,op, sta1);
 				
@@ -244,28 +242,27 @@ public class test {
 				DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 
 				LocalDateTime now = LocalDateTime.now();  
-		
-				String dropDes=sta;
-				//System.out.println("Will drop operator to "+dropDes+" station.");
 				
-				WebElement ele1 = driver.findElement(By.xpath("//*[text()='"+dropDes+"']")); 
-				WebElement parent = ele1.findElement(By.xpath("./../.."));// find station tile
-				WebElement target = parent.findElement(By.xpath("./div[2]"));
-				
-		        // Assign(drag and drop) operator to that station.
-				Actions a = new Actions(driver);
-				WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
-				a.dragAndDrop(source, target).build().perform();
-				Thread.sleep(30000);
-				
-				//Confirm operator dropped to proper station.
-				ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
-				parent = ele1.findElement(By.xpath("./.."));// find ele1 parent element
-				Boolean t=parent.findElement(By.xpath("./div[1]")).getText().contains(dropDes);// find ele1 parent element's third td child element.	
-				Assert.assertTrue(t);	
-				now = LocalDateTime.now();  
-				System.out.println("@"+dt.format(now)+" "+"dragged and dropped operator "+operator+" to "+dropDes+" station.");	
-	}
+						String dropDes=sta;
+						//System.out.println("Will drop operator to "+dropDes+" station.");
+						
+						WebElement ele1 = driver.findElement(By.xpath("//*[text()='"+dropDes+"']")); 
+						WebElement parent = ele1.findElement(By.xpath("./../.."));// find station tile
+						WebElement target = parent.findElement(By.xpath("./div[2]"));
+						
+				        // Assign(drag and drop) operator to that station.
+						Actions a = new Actions(driver);
+						WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
+						a.dragAndDrop(source, target).build().perform();
+						Thread.sleep(30000);
+						
+						//Confirm operator dropped to proper station.
+						ele1 = driver.findElement(By.xpath("//div[contains(@style,'"+operator+".jpg')]")); 
+						parent = ele1.findElement(By.xpath("./.."));// find ele1 parent element
+						Boolean t=parent.findElement(By.xpath("./div[1]")).getText().contains(dropDes);// find ele1 parent element's third td child element.	
+						Assert.assertTrue(t);					
+						System.out.println("@"+dt.format(now)+" "+"dragged and dropped operator "+operator+" to "+dropDes+" station.");	
+			}
 			public static void dragFromUnassignedToOccupiedStation(WebDriver driver,String operator, String sta, String occupiedOperator) throws InterruptedException{
 				
 				
@@ -351,19 +348,24 @@ public class test {
 			
 			public static void dragFromStationToUnassigned(WebDriver driver,String operator) throws InterruptedException {
 			
+				DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+				LocalDateTime now = LocalDateTime.now();
+				
 				WebElement target = driver.findElement(By.xpath("//div[@id='unassignedSec']"));
 				
 		        // Assign(drag and drop) operator to that station.
 				Actions a = new Actions(driver);
 				WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 				a.dragAndDrop(source, target).build().perform();
-				Thread.sleep(20000);
+				Thread.sleep(30000);
 				
 				
 				//Confirm previous occupied station moved to unassigned.
 				String c=driver.findElement(By.xpath("//div[@id='"+operator+"']")).getAttribute("class");	
 				Assert.assertTrue(c.contains("unassignedPanelHeader"));
-				System.out.println("operator "+operator+ " is moved  from station to  unassigned panel.");
+				now = LocalDateTime.now();  
+				System.out.println("@"+dt.format(now)+" "+"operator "+operator+ " is moved from station to  unassigned panel.");
 						
 
 			}

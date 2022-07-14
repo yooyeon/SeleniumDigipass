@@ -210,8 +210,7 @@ public class clockInAssignToHistoricalStation {
 		
 		
 		//Wait 20sec, then confirm in the db, it inserted into dashboard_data table.
-		now = LocalDateTime.now(); 
-		System.out.println("@"+dt.format(now)+" "+"Wait for 20sec...");
+
 		Thread.sleep(20000);	
 		rs= s.executeQuery(" SELECT * FROM [passport_sandbox].[dbo].[dashboard_data] where badge ="+operator+"");
 		rs.next(); 

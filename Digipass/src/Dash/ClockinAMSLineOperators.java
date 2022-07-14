@@ -145,7 +145,7 @@ public class ClockinAMSLineOperators {
 		
 		while(rs.next()) {
 			String o=rs.getNString("badge");
-			// call method to move operator to unassigned
+			// call method to move operator to unassignedf
 			 dragFromStationToUnassigned(driver,o);
 		} 				
 		Thread.sleep(20000);	
@@ -347,19 +347,24 @@ public class ClockinAMSLineOperators {
 	
 	public static void dragFromStationToUnassigned(WebDriver driver,String operator) throws InterruptedException {
 	
+		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+		LocalDateTime now = LocalDateTime.now();
+		
 		WebElement target = driver.findElement(By.xpath("//div[@id='unassignedSec']"));
 		
         // Assign(drag and drop) operator to that station.
 		Actions a = new Actions(driver);
 		WebElement source = driver.findElement(By.xpath("//*[contains(text(),'"+operator+"')]"));
 		a.dragAndDrop(source, target).build().perform();
-		Thread.sleep(20000);
+		Thread.sleep(30000);
 		
 		
 		//Confirm previous occupied station moved to unassigned.
 		String c=driver.findElement(By.xpath("//div[@id='"+operator+"']")).getAttribute("class");	
 		Assert.assertTrue(c.contains("unassignedPanelHeader"));
-		System.out.println("operator "+operator+ " is moved  from station to  unassigned panel.");
+		now = LocalDateTime.now();  
+		System.out.println("@"+dt.format(now)+" "+"operator "+operator+ " is moved from station to  unassigned panel.");
 				
 
 	}
