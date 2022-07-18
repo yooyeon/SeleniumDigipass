@@ -125,9 +125,9 @@ public class ClockinAMSLineOperators {
 				String childId = it.next();
 				driver.switchTo().window(parentId);
 				driver.navigate().refresh();
-				System.out.println("Wait for 2min...");
+				System.out.println("Wait for 3min...");
 				//Thread.sleep(20000);	
-				Thread.sleep(120000);	
+				Thread.sleep(180000);	
 				
 		// click on unassigned panel icon on top in case no unassigned panel displayed in the dashboard.
 
