@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-07-14T16:02:28 CDT" name="Default suite" finished-at="2022-07-14T16:05:04 CDT" duration-ms="155801">
+  <suite started-at="2022-07-14T16:08:36 CDT" name="Default suite" finished-at="2022-07-14T16:32:51 CDT" duration-ms="1455898">
     <groups>
     </groups>
-    <test started-at="2022-07-14T16:02:28 CDT" name="Default test" finished-at="2022-07-14T16:05:04 CDT" duration-ms="155801">
-      <class name="Dash.ClockOutFromUnassignedPanel">
-        <test-method signature="mainClockOutFromUnassignedPanel()[pri:0, instance:Dash.ClockOutFromUnassignedPanel@3514a4c0]" started-at="2022-07-14T16:02:28 CDT" name="mainClockOutFromUnassignedPanel" finished-at="2022-07-14T16:05:04 CDT" duration-ms="155750" status="PASS">
+    <test started-at="2022-07-14T16:08:36 CDT" name="Default test" finished-at="2022-07-14T16:32:51 CDT" duration-ms="1455898">
+      <class name="Dash.ReleaseAndSentHome">
+        <test-method signature="mainReleaseAndSentHome()[pri:0, instance:Dash.ReleaseAndSentHome@3514a4c0]" started-at="2022-07-14T16:08:36 CDT" name="mainReleaseAndSentHome" finished-at="2022-07-14T16:32:51 CDT" duration-ms="1455852" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- mainClockOutFromUnassignedPanel -->
-      </class> <!-- Dash.ClockOutFromUnassignedPanel -->
+        </test-method> <!-- mainReleaseAndSentHome -->
+      </class> <!-- Dash.ReleaseAndSentHome -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
