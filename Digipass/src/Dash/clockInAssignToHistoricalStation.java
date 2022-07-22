@@ -178,6 +178,7 @@ public class clockInAssignToHistoricalStation {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//button[@aria-label='Edit Punch']")).click();
 		Thread.sleep(2000);
+		driver.findElement(By.id("punch-effective-time_inptext")).clear();
 		driver.findElement(By.id("punch-effective-time_inptext")).sendKeys(time2);
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//button[text()='Apply']")).click();
