@@ -11,7 +11,8 @@
       	<class name="Dash.DragAndDrop"/>       	
      	<class name="Dash.checkDuplication"/> 
      	<class name="Dash.ReserveOperatorAndRemoveRes"/> 
-     	<class name="Dash.search"/>     	
+     	<class name="Dash.search"/>     
+     	<class name="Dash.UserInterfaceHelp	"/>      	
       	<class name="Dash.ClockOutFromDashaboardStation"/>      	
    		<class name="Dash.ClockOutFromUnassignedPanel"/>    		
    		<class name="Dash.ReleaseAndSentHome"/>  
