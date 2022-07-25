@@ -1,77 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="11" passed="11" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-07-20T13:42:30 CDT" name="Suite" finished-at="2022-07-20T14:40:37 CDT" duration-ms="3486973">
+  <suite started-at="2022-07-25T16:50:29 CDT" name="Default suite" finished-at="2022-07-25T16:51:16 CDT" duration-ms="47264">
     <groups>
     </groups>
-    <test started-at="2022-07-20T13:42:30 CDT" name="DashTest" finished-at="2022-07-20T14:40:37 CDT" duration-ms="3486973">
-      <class name="Dash.ClockOutFromUnassignedPanel">
-        <test-method signature="mainClockOutFromUnassignedPanel()[pri:0, instance:Dash.ClockOutFromUnassignedPanel@73e22a3d]" started-at="2022-07-20T14:14:57 CDT" name="mainClockOutFromUnassignedPanel" finished-at="2022-07-20T14:16:49 CDT" duration-ms="112513" status="PASS">
+    <test started-at="2022-07-25T16:50:29 CDT" name="Default test" finished-at="2022-07-25T16:51:16 CDT" duration-ms="47264">
+      <class name="Dash.UserInterfaceHelp">
+        <test-method signature="mainUserInterfaceHelp()[pri:0, instance:Dash.UserInterfaceHelp@d29f28]" started-at="2022-07-25T16:50:29 CDT" name="mainUserInterfaceHelp" finished-at="2022-07-25T16:51:16 CDT" duration-ms="47218" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- mainClockOutFromUnassignedPanel -->
-      </class> <!-- Dash.ClockOutFromUnassignedPanel -->
-      <class name="Dash.search">
-        <test-method signature="mainSearch()[pri:0, instance:Dash.search@7133da86]" started-at="2022-07-20T14:12:42 CDT" name="mainSearch" finished-at="2022-07-20T14:13:27 CDT" duration-ms="44856" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainSearch -->
-      </class> <!-- Dash.search -->
-      <class name="Dash.ClockinAMSLineOperators">
-        <test-method signature="mainClockinAMSLineOperators()[pri:0, instance:Dash.ClockinAMSLineOperators@71def8f8]" started-at="2022-07-20T13:47:42 CDT" name="mainClockinAMSLineOperators" finished-at="2022-07-20T13:56:40 CDT" duration-ms="537525" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainClockinAMSLineOperators -->
-      </class> <!-- Dash.ClockinAMSLineOperators -->
-      <class name="Dash.ClockOutFromDashaboardStation">
-        <test-method signature="mainClockOutFromDashaboardStation()[pri:0, instance:Dash.ClockOutFromDashaboardStation@3232a28a]" started-at="2022-07-20T14:13:27 CDT" name="mainClockOutFromDashaboardStation" finished-at="2022-07-20T14:14:57 CDT" duration-ms="89931" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainClockOutFromDashaboardStation -->
-      </class> <!-- Dash.ClockOutFromDashaboardStation -->
-      <class name="Dash.DragAndDrop">
-        <test-method signature="mainDragAndDrop()[pri:0, instance:Dash.DragAndDrop@4d465b11]" started-at="2022-07-20T14:01:26 CDT" name="mainDragAndDrop" finished-at="2022-07-20T14:09:53 CDT" duration-ms="506953" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainDragAndDrop -->
-      </class> <!-- Dash.DragAndDrop -->
-      <class name="Dash.ReleaseMTNLAssignToStation">
-        <test-method signature="mainReleaseMTNLAssignToStation()[pri:0, instance:Dash.ReleaseMTNLAssignToStation@383bfa16]" started-at="2022-07-20T13:56:40 CDT" name="mainReleaseMTNLAssignToStation" finished-at="2022-07-20T14:01:26 CDT" duration-ms="286518" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainReleaseMTNLAssignToStation -->
-      </class> <!-- Dash.ReleaseMTNLAssignToStation -->
-      <class name="Dash.clockInToDashboardReservedStation">
-        <test-method signature="mainClockInToDashboardReservedStation()[pri:0, instance:Dash.clockInToDashboardReservedStation@73700b80]" started-at="2022-07-20T13:42:30 CDT" name="mainClockInToDashboardReservedStation" finished-at="2022-07-20T13:44:51 CDT" duration-ms="140848" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainClockInToDashboardReservedStation -->
-      </class> <!-- Dash.clockInToDashboardReservedStation -->
-      <class name="Dash.checkDuplication">
-        <test-method signature="mainCheckDuplication()[pri:0, instance:Dash.checkDuplication@53fdffa1]" started-at="2022-07-20T14:09:53 CDT" name="mainCheckDuplication" finished-at="2022-07-20T14:10:33 CDT" duration-ms="39516" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainCheckDuplication -->
-      </class> <!-- Dash.checkDuplication -->
-      <class name="Dash.clockInAssignToHistoricalStation">
-        <test-method signature="mainClockInAssignToHistoricalStation()[pri:0, instance:Dash.clockInAssignToHistoricalStation@16610890]" started-at="2022-07-20T13:44:51 CDT" name="mainClockInAssignToHistoricalStation" finished-at="2022-07-20T13:47:42 CDT" duration-ms="170907" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainClockInAssignToHistoricalStation -->
-      </class> <!-- Dash.clockInAssignToHistoricalStation -->
-      <class name="Dash.ReserveOperatorAndRemoveRes">
-        <test-method signature="mainReserveOperatorAndRemoveRes()[pri:0, instance:Dash.ReserveOperatorAndRemoveRes@5562c41e]" started-at="2022-07-20T14:10:33 CDT" name="mainReserveOperatorAndRemoveRes" finished-at="2022-07-20T14:12:42 CDT" duration-ms="129346" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainReserveOperatorAndRemoveRes -->
-      </class> <!-- Dash.ReserveOperatorAndRemoveRes -->
-      <class name="Dash.ReleaseAndSentHome">
-        <test-method signature="mainReleaseAndSentHome()[pri:0, instance:Dash.ReleaseAndSentHome@47faa49c]" started-at="2022-07-20T14:16:49 CDT" name="mainReleaseAndSentHome" finished-at="2022-07-20T14:40:37 CDT" duration-ms="1427973" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- mainReleaseAndSentHome -->
-      </class> <!-- Dash.ReleaseAndSentHome -->
-    </test> <!-- DashTest -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- mainUserInterfaceHelp -->
+      </class> <!-- Dash.UserInterfaceHelp -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
