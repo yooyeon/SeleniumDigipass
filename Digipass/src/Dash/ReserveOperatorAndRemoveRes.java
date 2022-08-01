@@ -104,7 +104,7 @@ public class ReserveOperatorAndRemoveRes {
 		actions.contextClick(w).perform();
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//div[@id='reserveStationBtn']")).click();
-		Thread.sleep(5000);
+		Thread.sleep(20000);
 		driver.findElement(By.xpath("//span[contains(text(),'Yes')]")).click();
 		Thread.sleep(5000);
 		

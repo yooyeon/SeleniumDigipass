@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>DashTest</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>11/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>11/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Jul 20 13:42:30 CDT 2022</td>
+<td>Started on:</td><td>Mon Aug 01 13:02:26 CDT 2022</td>
 </tr>
-<tr><td>Total time:</td><td>3486 seconds (3486973 ms)</td>
+<tr><td>Total time:</td><td>3418 seconds (3418739 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,92 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='Dash.ReserveOperatorAndRemoveRes.mainReserveOperatorAndRemoveRes()'><b>mainReserveOperatorAndRemoveRes</b><br>Test class: Dash.ReserveOperatorAndRemoveRes</td>
+<td><div><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;dx-button-text&quot;&gt;...&lt;/span&gt; is not clickable at point (713, 407). Other element would receive the click: &lt;div class=&quot;dx-overlay-content dx-toast-error dx-toast-content dx-resizable&quot; style=&quot;width: 1228.8px; height: auto; z-index: 1503; margin: 0px; left: 0px; top: 0px; transform: translate(154px, 301px); transition: none 0s ease 0s; visibility: visible; opacity: 1;&quot;&gt;...&lt;/div&gt;
+  (Session info: chrome=103.0.5060.114)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;GMC16381&apos;, ip: &apos;10.168.232.144&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;16.0.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c894c173e82a30517e1f12e7f1e624f4, clickElement {id=edd0761c-2497-486e-b6ce-0d6574bc0baf}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\cuiyx\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:61452}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61452/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (c894c173e82a30517e1f12e7f1e624f4)] -&gt; xpath: //span[contains(text(),&apos;Yes&apos;)]]
+Session ID: c894c173e82a30517e1f12e7f1e624f4
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:251)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at Dash.ReserveOperatorAndRemoveRes.mainReserveOperatorAndRemoveRes(ReserveOperatorAndRemoveRes.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 32 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1546272524", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1546272524'><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;dx-button-text&quot;&gt;...&lt;/span&gt; is not clickable at point (713, 407). Other element would receive the click: &lt;div class=&quot;dx-overlay-content dx-toast-error dx-toast-content dx-resizable&quot; style=&quot;width: 1228.8px; height: auto; z-index: 1503; margin: 0px; left: 0px; top: 0px; transform: translate(154px, 301px); transition: none 0s ease 0s; visibility: visible; opacity: 1;&quot;&gt;...&lt;/div&gt;
+  (Session info: chrome=103.0.5060.114)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;GMC16381&apos;, ip: &apos;10.168.232.144&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;16.0.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c894c173e82a30517e1f12e7f1e624f4, clickElement {id=edd0761c-2497-486e-b6ce-0d6574bc0baf}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\cuiyx\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:61452}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61452/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (c894c173e82a30517e1f12e7f1e624f4)] -&gt; xpath: //span[contains(text(),&apos;Yes&apos;)]]
+Session ID: c894c173e82a30517e1f12e7f1e624f4
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:251)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at Dash.ReserveOperatorAndRemoveRes.mainReserveOperatorAndRemoveRes(ReserveOperatorAndRemoveRes.java:108)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>106</td>
+<td>Dash.ReserveOperatorAndRemoveRes@4d0f2471</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -75,60 +161,60 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Dash.ClockinAMSLineOperators.mainClockinAMSLineOperators()'><b>mainClockinAMSLineOperators</b><br>Test class: Dash.ClockinAMSLineOperators</td>
-<td></td>
-<td>537</td>
-<td>Dash.ClockinAMSLineOperators@71def8f8</td></tr>
-<tr>
 <td title='Dash.checkDuplication.mainCheckDuplication()'><b>mainCheckDuplication</b><br>Test class: Dash.checkDuplication</td>
 <td></td>
-<td>39</td>
-<td>Dash.checkDuplication@53fdffa1</td></tr>
+<td>37</td>
+<td>Dash.checkDuplication@32ee6fee</td></tr>
+<tr>
+<td title='Dash.ReleaseAndSentHome.mainReleaseAndSentHome()'><b>mainReleaseAndSentHome</b><br>Test class: Dash.ReleaseAndSentHome</td>
+<td></td>
+<td>1406</td>
+<td>Dash.ReleaseAndSentHome@6da21078</td></tr>
+<tr>
+<td title='Dash.clockInToDashboardReservedStation.mainClockInToDashboardReservedStation()'><b>mainClockInToDashboardReservedStation</b><br>Test class: Dash.clockInToDashboardReservedStation</td>
+<td></td>
+<td>142</td>
+<td>Dash.clockInToDashboardReservedStation@10d307f1</td></tr>
+<tr>
+<td title='Dash.ClockinAMSLineOperators.mainClockinAMSLineOperators()'><b>mainClockinAMSLineOperators</b><br>Test class: Dash.ClockinAMSLineOperators</td>
+<td></td>
+<td>429</td>
+<td>Dash.ClockinAMSLineOperators@4d465b11</td></tr>
 <tr>
 <td title='Dash.ReleaseMTNLAssignToStation.mainReleaseMTNLAssignToStation()'><b>mainReleaseMTNLAssignToStation</b><br>Test class: Dash.ReleaseMTNLAssignToStation</td>
 <td></td>
 <td>286</td>
-<td>Dash.ReleaseMTNLAssignToStation@383bfa16</td></tr>
-<tr>
-<td title='Dash.search.mainSearch()'><b>mainSearch</b><br>Test class: Dash.search</td>
-<td></td>
-<td>44</td>
-<td>Dash.search@7133da86</td></tr>
-<tr>
-<td title='Dash.ReserveOperatorAndRemoveRes.mainReserveOperatorAndRemoveRes()'><b>mainReserveOperatorAndRemoveRes</b><br>Test class: Dash.ReserveOperatorAndRemoveRes</td>
-<td></td>
-<td>129</td>
-<td>Dash.ReserveOperatorAndRemoveRes@5562c41e</td></tr>
-<tr>
-<td title='Dash.clockInToDashboardReservedStation.mainClockInToDashboardReservedStation()'><b>mainClockInToDashboardReservedStation</b><br>Test class: Dash.clockInToDashboardReservedStation</td>
-<td></td>
-<td>140</td>
-<td>Dash.clockInToDashboardReservedStation@73700b80</td></tr>
+<td>Dash.ReleaseMTNLAssignToStation@53fdffa1</td></tr>
 <tr>
 <td title='Dash.ClockOutFromDashaboardStation.mainClockOutFromDashaboardStation()'><b>mainClockOutFromDashaboardStation</b><br>Test class: Dash.ClockOutFromDashaboardStation</td>
 <td></td>
-<td>89</td>
-<td>Dash.ClockOutFromDashaboardStation@3232a28a</td></tr>
+<td>110</td>
+<td>Dash.ClockOutFromDashaboardStation@28f2a10f</td></tr>
 <tr>
-<td title='Dash.ClockOutFromUnassignedPanel.mainClockOutFromUnassignedPanel()'><b>mainClockOutFromUnassignedPanel</b><br>Test class: Dash.ClockOutFromUnassignedPanel</td>
+<td title='Dash.search.mainSearch()'><b>mainSearch</b><br>Test class: Dash.search</td>
 <td></td>
-<td>112</td>
-<td>Dash.ClockOutFromUnassignedPanel@73e22a3d</td></tr>
+<td>45</td>
+<td>Dash.search@73e22a3d</td></tr>
 <tr>
-<td title='Dash.clockInAssignToHistoricalStation.mainClockInAssignToHistoricalStation()'><b>mainClockInAssignToHistoricalStation</b><br>Test class: Dash.clockInAssignToHistoricalStation</td>
+<td title='Dash.UserInterfaceHelp.mainUserInterfaceHelp()'><b>mainUserInterfaceHelp</b><br>Test class: Dash.UserInterfaceHelp</td>
 <td></td>
-<td>170</td>
-<td>Dash.clockInAssignToHistoricalStation@16610890</td></tr>
-<tr>
-<td title='Dash.ReleaseAndSentHome.mainReleaseAndSentHome()'><b>mainReleaseAndSentHome</b><br>Test class: Dash.ReleaseAndSentHome</td>
-<td></td>
-<td>1427</td>
-<td>Dash.ReleaseAndSentHome@47faa49c</td></tr>
+<td>44</td>
+<td>Dash.UserInterfaceHelp@47faa49c</td></tr>
 <tr>
 <td title='Dash.DragAndDrop.mainDragAndDrop()'><b>mainDragAndDrop</b><br>Test class: Dash.DragAndDrop</td>
 <td></td>
-<td>506</td>
-<td>Dash.DragAndDrop@4d465b11</td></tr>
+<td>507</td>
+<td>Dash.DragAndDrop@5562c41e</td></tr>
+<tr>
+<td title='Dash.clockInAssignToHistoricalStation.mainClockInAssignToHistoricalStation()'><b>mainClockInAssignToHistoricalStation</b><br>Test class: Dash.clockInAssignToHistoricalStation</td>
+<td></td>
+<td>173</td>
+<td>Dash.clockInAssignToHistoricalStation@383bfa16</td></tr>
+<tr>
+<td title='Dash.ClockOutFromUnassignedPanel.mainClockOutFromUnassignedPanel()'><b>mainClockOutFromUnassignedPanel</b><br>Test class: Dash.ClockOutFromUnassignedPanel</td>
+<td></td>
+<td>130</td>
+<td>Dash.ClockOutFromUnassignedPanel@f736069</td></tr>
 </table><p>
 </body>
 </html>
