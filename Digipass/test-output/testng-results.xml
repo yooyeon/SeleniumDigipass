@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-08-01T14:00:21 CDT" name="Default suite" finished-at="2022-08-01T14:03:08 CDT" duration-ms="167034">
+  <suite started-at="2022-08-02T16:00:55 CDT" name="Suite" finished-at="2022-08-02T16:03:21 CDT" duration-ms="146653">
     <groups>
     </groups>
-    <test started-at="2022-08-01T14:00:21 CDT" name="Default test" finished-at="2022-08-01T14:03:08 CDT" duration-ms="167034">
-      <class name="Dash.ReserveOperatorAndRemoveRes">
-        <test-method signature="mainReserveOperatorAndRemoveRes()[pri:0, instance:Dash.ReserveOperatorAndRemoveRes@3514a4c0]" started-at="2022-08-01T14:00:21 CDT" name="mainReserveOperatorAndRemoveRes" finished-at="2022-08-01T14:03:08 CDT" duration-ms="167005" status="PASS">
+    <test started-at="2022-08-02T16:00:55 CDT" name="DashTest" finished-at="2022-08-02T16:03:21 CDT" duration-ms="146653">
+      <class name="DPManage.ShiftCatalog">
+        <test-method signature="mainShiftCatalog()[pri:0, instance:DPManage.ShiftCatalog@d29f28]" started-at="2022-08-02T16:00:55 CDT" name="mainShiftCatalog" finished-at="2022-08-02T16:03:21 CDT" duration-ms="146613" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- mainReserveOperatorAndRemoveRes -->
-      </class> <!-- Dash.ReserveOperatorAndRemoveRes -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- mainShiftCatalog -->
+      </class> <!-- DPManage.ShiftCatalog -->
+    </test> <!-- DashTest -->
+  </suite> <!-- Suite -->
 </testng-results>
