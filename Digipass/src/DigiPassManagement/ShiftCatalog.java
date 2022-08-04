@@ -188,6 +188,7 @@ public class ShiftCatalog {
 				
 		//Confirm TestYoo catalog is created successfully.
 				driver.navigate().refresh();
+				Thread.sleep(3000);
 				ele1 = driver.findElement(By.xpath("//*[text()='In Use?']"));
 				parent = ele1.findElement(By.xpath("./.."));
 				child = parent.findElement(By.xpath("./div[2]/div[1]/div[1]/span[1]"));
@@ -235,6 +236,7 @@ public class ShiftCatalog {
 				
 				// check Active, and save changes.
 				driver.navigate().refresh();
+				Thread.sleep(3000);
 				ele1 = driver.findElement(By.xpath("//*[text()='In Use?']"));
 				parent = ele1.findElement(By.xpath("./.."));
 				child = parent.findElement(By.xpath("./div[2]/div[1]/div[1]/span[1]"));
@@ -281,6 +283,7 @@ public class ShiftCatalog {
 				
 				//Confirm TestYoo-Copy is created.
 				driver.navigate().refresh();
+				Thread.sleep(3000);
 				ele1 = driver.findElement(By.xpath("//*[text()='In Use?']"));
 				parent = ele1.findElement(By.xpath("./.."));
 				child = parent.findElement(By.xpath("./div[2]/div[1]/div[1]/span[1]"));
@@ -326,6 +329,7 @@ public class ShiftCatalog {
 				
 				//confirm can't find TestYoo-Copy
 				driver.navigate().refresh();
+				Thread.sleep(3000);
 				ele1 = driver.findElement(By.xpath("//*[text()='In Use?']"));
 				parent = ele1.findElement(By.xpath("./.."));
 				child = parent.findElement(By.xpath("./div[2]/div[1]/div[1]/span[1]"));

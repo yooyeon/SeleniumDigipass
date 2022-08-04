@@ -141,7 +141,7 @@ public class ClockinAMSLineOperators {
 				Thread.sleep(3000);
 				
 		// move all operator to unassigned panel		
-		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator[0]+"','"+operator[1]+"','"+operator[2]+"','"+operator[3]+"','"+operator[4]+"') and department_id in  (select id from department where name ='"+dept+"') ");
+		rs= s.executeQuery("SELECT  * FROM [passport_sandbox].[dbo].[dashboard_data] where badge in ('"+operator[0]+"','"+operator[1]+"','"+operator[2]+"','"+operator[3]+"','"+operator[4]+"') and department_id in  (select id from department where name ='"+dept+"') order by user_modified_date asc ");
 		
 		while(rs.next()) {
 			String o=rs.getNString("badge");
