@@ -4,8 +4,11 @@
   <test thread-count="5" name="DashTest">
     <classes>   
      <!--   
-     -->
-        <class name="DPManage.ShiftCatalog"/>         
+    
+        <class name="DPManage.ShiftCatalog"/>   
+        
+       -->   
+        <class name="DPManage.PSIWeight"/>            
 
        	  
     </classes>
