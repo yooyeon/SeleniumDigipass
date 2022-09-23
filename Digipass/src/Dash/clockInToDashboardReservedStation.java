@@ -159,7 +159,7 @@ public class clockInToDashboardReservedStation {
 		
 		// In today's schedule , enter clock in time and current time and save. 
 		ele1 = driver.findElement(By.xpath("//span[contains(text(), ' "+dat1+"')]"));
-		parent = ele1.findElement(By.xpath("./../../../../../.."));
+		parent = ele1.findElement(By.xpath("./../../../../../../.."));
 		child = parent.findElement(By.xpath("./div[1]/timecard-add-cell[1]/div[1]"));
 		String app=child.getAttribute("id");
 		char a1 = app.charAt(0);

@@ -131,7 +131,8 @@ public class clockInToDashboardReservedStation {
 				Thread.sleep(1000);
 				driver.findElement(By.id("goToDropdownButton")).click();
 				Thread.sleep(2000);
-				driver.findElement(By.xpath("//button[@title='Timecard']")).click();
+				//driver.findElement(By.xpath("//button[@title='Timecard']")).click();
+				driver.findElement(By.xpath("//ul[@class='go-to-items-list']/li[1]/button")).click();
 				Thread.sleep(3000);
 				
 				//select today in timecard page
@@ -156,7 +157,7 @@ public class clockInToDashboardReservedStation {
 				
 				// In today's schedule , enter clock in time and current time and save. 
 				ele1 = driver.findElement(By.xpath("//span[contains(text(), ' "+dat1+"')]"));
-				parent = ele1.findElement(By.xpath("./../../../../../.."));
+				parent = ele1.findElement(By.xpath("./../../../../../../.."));
 				child = parent.findElement(By.xpath("./div[1]/timecard-add-cell[1]/div[1]"));
 				String app=child.getAttribute("id");
 				char a1 = app.charAt(0);
@@ -167,13 +168,14 @@ public class clockInToDashboardReservedStation {
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//button[@aria-label='Edit Punch']")).click();
 				Thread.sleep(2000);
+				driver.findElement(By.id("punch-effective-time_inptext")).clear();
 				driver.findElement(By.id("punch-effective-time_inptext")).sendKeys(time2);
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//button[text()='Apply']")).click();
 				Thread.sleep(2000);
 				driver.findElement(By.cssSelector("i.icon-k-save.button-highlight.hidden-xs")).click();
 				
-				//Wait 3min, then confirm in the db, it created new clock in entry.
+				//check in db every 20sec, wait until clock entry created...
 				now = LocalDateTime.now();  
 				System.out.println("@"+dt.format(now)+" "+"Wait for clock entry, will check every 20 sec...");
 				
@@ -238,4 +240,5 @@ public class clockInToDashboardReservedStation {
 				}
 						
 		}
+
 }
