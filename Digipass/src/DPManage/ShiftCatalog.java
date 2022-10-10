@@ -52,7 +52,7 @@ public class ShiftCatalog {
 		//Navigate to shift catalog page.
 				driver.findElement(By.cssSelector("span.MuiIconButton-label")).click();
 				Thread.sleep(5000);
-				driver.findElement(By.xpath("//*[text()='Shift Catalog']")).click();
+				driver.findElement(By.xpath("//*[text()='Shift Template']")).click();
 				Thread.sleep(5000);
 				
 		//create new shift catalog

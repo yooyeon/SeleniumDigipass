@@ -11,7 +11,7 @@ import org.testng.Assert;
 public class SkillOperatorType {
 
 	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
+
 		// Login to home page , and expand menu icons
 		System.setProperty("webdriver.chrome.driver", "C:\\yooyeon\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
@@ -93,5 +93,4 @@ public class SkillOperatorType {
 		
 		driver.quit();
 	}
-
 }

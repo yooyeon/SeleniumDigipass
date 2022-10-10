@@ -118,6 +118,13 @@ public class clockInAssignToHistoricalStation {
 	
 		rs.next(); 
 		String operator= rs.getString("badge");
+		StringBuffer buf = new StringBuffer(operator);
+		while (buf.length() < 6) {
+			  buf.insert(0, '0');
+			}
+
+		 operator = buf.toString();
+		
 		now = LocalDateTime.now(); 
 		System.out.println("@"+dt.format(now)+" "+"Operator badge is : "+operator);
 		

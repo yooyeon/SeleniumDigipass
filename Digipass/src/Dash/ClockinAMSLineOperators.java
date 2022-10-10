@@ -54,7 +54,7 @@ public class ClockinAMSLineOperators {
 		driver.findElement(By.xpath("//h4[contains(text(),'Assembly')]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//h4[contains(text(),'"+dept+"')]")).click();
-		Thread.sleep(5000);
+		Thread.sleep(20000);
 		int i=driver.findElements(By.xpath("//div[@id='departmentDash']")).size();
 		Assert.assertTrue(i>0);
 		
@@ -106,13 +106,19 @@ public class ClockinAMSLineOperators {
 			
 		
 		// Call clock in method three times to clock in two operators.
-		String[] operator = new String[6];
-		for (int j = 0; j < 6; j++) {	
-			rs.next();		
-			operator[j]=rs.getNString("badge");	
-			
-		}
-		
+				String[] operator = new String[6];
+				for (int j = 0; j < 6; j++) {	
+					rs.next();		
+					operator[j]=rs.getNString("badge");	
+					
+					StringBuffer buf = new StringBuffer(operator[j]);
+					while (buf.length() < 6) {
+						  buf.insert(0, '0');
+						}
+
+					 operator[j] = buf.toString();
+				}
+				
 		clockIn(driver, operator[0]);
 		clockIn(driver, operator[1]);
 		clockIn(driver, operator[2]);

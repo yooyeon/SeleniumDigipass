@@ -56,6 +56,12 @@ public class ClockOutFromUnassignedPanel {
 		
 		rs.next(); 
 		String operator= rs.getString("badge");
+		StringBuffer buf = new StringBuffer(operator);
+		while (buf.length() < 6) {
+			  buf.insert(0, '0');
+			}
+
+		 operator = buf.toString();
 		String deptID= rs.getString("department_id");
 		rs= s.executeQuery("select  * from department where id="+deptID+"");				
 		rs.next(); 

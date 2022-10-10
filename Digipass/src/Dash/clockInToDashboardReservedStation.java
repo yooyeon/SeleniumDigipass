@@ -107,9 +107,15 @@ public class clockInToDashboardReservedStation {
 				+ " and  badge in (SELECT badge FROM [passport_sandbox].[dbo].[operator_schedules] where  scheduled_day='"+date1+"' group by badge having COUNT(badge)=1) \r\n"
 				+ " and  badge not in (select badge from unassigned_operators) \r\n"
 				+ " and badge not in (select badge  from dashboard_data where badge is not null) order by queued_time asc ") ;
-	
 		rs.next(); 
 		String operator= rs.getString("badge");
+		StringBuffer buf = new StringBuffer(operator);
+		while (buf.length() < 6) {
+			  buf.insert(0, '0');
+			}
+
+		 operator = buf.toString();
+		
 		now = LocalDateTime.now();  
 		System.out.println("@"+dt.format(now)+" "+"Operator badge is : "+operator);
 		

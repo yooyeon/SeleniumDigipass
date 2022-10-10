@@ -56,6 +56,12 @@ public class ClockOutFromDashaboardStation {
 		
 		rs.next(); 
 		String operator= rs.getString("badge");
+		StringBuffer buf = new StringBuffer(operator);
+		while (buf.length() < 6) {
+			  buf.insert(0, '0');
+			}
+
+		 operator = buf.toString();
 		String station= rs.getString("station_name");
 		String dept= rs.getString("department_name");
 		now = LocalDateTime.now();

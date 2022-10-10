@@ -100,23 +100,23 @@ public class CreateClassAndEditGrade {
 				WebElement parent2 = ele2.findElement(By.xpath("./.."));
 				WebElement child2 = parent2.findElement(By.xpath("./td[12]"));
 				child2.click();
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				ele2 = driver.findElement(By.xpath("//td[contains(text(),'" + Badge1 + "')]")); 
 				parent2 = ele2.findElement(By.xpath("./.."));
 				child2 = parent2.findElement(By.xpath("./td[12]/div[1]/div[1]/div[1]/input[1]"));
 				child2.sendKeys("0"+ "\n");
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				
 				WebElement ele3 = driver.findElement(By.xpath("//td[contains(text(),'" + Badge3 + "')]")); 
 				WebElement parent3 = ele3.findElement(By.xpath("./.."));
 				WebElement child3 = parent3.findElement(By.xpath("./td[12]"));
 				child3.click();
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				ele3 = driver.findElement(By.xpath("//td[contains(text(),'" + Badge3 + "')]")); 
 				parent3 = ele3.findElement(By.xpath("./.."));
 				child3 = parent3.findElement(By.xpath("./td[12]/div[1]/div[1]/div[1]/input[1]"));
 				child3.sendKeys("1"+ "\n");
-				Thread.sleep(1000);				
+				Thread.sleep(2000);				
 
 				//Make sure after grade assigned, result fail displayed to badge Badge1, pass displayed for badge Badge3
 				ele2 = driver.findElement(By.xpath("//td[contains(text(),'" + Badge1 + "')]")); 

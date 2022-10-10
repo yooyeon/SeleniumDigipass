@@ -134,7 +134,8 @@ public class ManagementNonDetailedReports {
 				
 				
 				String md=driver.findElement(By.xpath("//body[1]/div[11]/div[2]/div[1]/div[6]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[6]")).getText();
-				Assert.assertEquals(md, date);
+				String md1= md.substring(0, md.length() - 1); // to remove last character.
+				Assert.assertEquals(md1, date);
 				
 				System.out.println("Test pass!");
 				
